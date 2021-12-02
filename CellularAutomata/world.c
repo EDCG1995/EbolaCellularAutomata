@@ -1,21 +1,45 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <time.h>
 #include <pthread.h>
 #include "header.h"
 
-int world[Xaxis][Yaxis];
-
-
-void generateWorld(){
-  srand(time(NULL));
+extern int world[Xaxis][Yaxis];
+void generateWorld()
+{
   int row;
   int col;
-  for(row = 0; row < Xaxis; row++){
-    for(col = 0; col < Yaxis; col++){
-      float random = (float)rand()/(float)RAND_MAX; 
+  float random;
+  int susc = 0;
+  int inf = 0;
+  int empty = 0;
+  //gets the percetage of populated cells ex. 0.95 (95%)
+  float populated = (float)POPULATION / (Xaxis * Yaxis);
+  printf("%f", populated);
+  for (row = 0; row <= Xaxis; row++)
+  {
+    for (col = 0; col <= Yaxis; col++)
+    {
+      random = (float)rand() / (float)RAND_MAX;
+      //cell will be a susceptible person
+      if (random <= populated && random >= ZERO)
+      {
+        world[row][col] = SUSC;
+        susc += 1;
+      }
+      //cell will be an infected person
+      else if (random <= populated && random <= ZERO)
+      {
+        world[row][col] = INF;
+        inf += 1;
+      }
+      //cell will be empty
+      else
+      {
+        world[row][col] = EMPTY;
+        empty += 1;
+      }
+      printf("cell [%d][%d] is : %d \n", row, col, world[row][col]);
     }
   }
-  printf("generate world accessed!");
+  printf("Population rate: %f \nSusceptible: %d \nInfected: %d \nEmpty:%d", populated, susc, inf, empty);
 }
-void populateWorld(){}

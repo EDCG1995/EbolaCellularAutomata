@@ -1,8 +1,12 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "header.h"
+#include <time.h>
 
-int main(){
+int world[Xaxis][Yaxis];
+int main()
+{
+  srand(time(NULL));
   generateWorld();
-  //populateWorld();
+  return 0;
 }
