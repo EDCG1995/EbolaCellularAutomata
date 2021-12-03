@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Dec  2 17:44:37 2021
+# Make data base, printed on Fri Dec  3 19:06:38 2021
 
 # Variables
 
@@ -25,7 +25,7 @@ SNAP_INSTANCE_KEY =
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-431162a0-d7da-49c4-a392-afdb91bd6e8e.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-e8b51109-76c2-4bd5-89eb-c7bb9e195d13.sock
 # environment
 VSCODE_CWD = /home/enzo
 # default
@@ -59,7 +59,7 @@ VSCODE_CODE_CACHE_PATH = /home/enzo/.config/Code/CachedData/ccbaa2d27e38e5afa3e5
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.PMQWD1
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.9GBGD1
 # default
 .LOADED := 
 # default
@@ -101,7 +101,7 @@ SNAP_REEXEC =
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 2388
+VSCODE_PID = 9818
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
@@ -109,7 +109,7 @@ XDG_SESSION_TYPE = wayland
 # environment
 BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
 # environment
-SESSION_MANAGER = local/enzo-VirtualBox:@/tmp/.ICE-unix/1418,unix/enzo-VirtualBox:/tmp/.ICE-unix/1418
+SESSION_MANAGER = local/enzo-VirtualBox:@/tmp/.ICE-unix/1432,unix/enzo-VirtualBox:/tmp/.ICE-unix/1432
 # automatic
 *F = $(notdir $*)
 # environment
@@ -157,7 +157,7 @@ SNAP_USER_COMMON = /home/enzo/snap/code/common
 # environment
 SNAP = /snap/code/82
 # environment
-INVOCATION_ID = 9d47371813f147f5a9a5456c76c14e87
+INVOCATION_ID = 0809c547b39f419fbd7adf1dd730435d
 # environment
 SNAP_REVISION = 82
 # environment
@@ -178,7 +178,6 @@ XDG_CURRENT_DESKTOP = Unity
 LS_COLORS = 
 # automatic
 +F = $(notdir $+)
- 
 # environment
 DESKTOP_SESSION = ubuntu
 # environment
@@ -196,7 +195,6 @@ SNAP_ARCH = amd64
 # environment
 DISPLAY = :0
 # environment
- 
 USER = enzo
 # environment
 GTK_MODULES = gail:atk-bridge
@@ -209,9 +207,9 @@ SNAP_DATA = /var/snap/code/82
 # environment
 SNAP_CONTEXT = YedDrHN1o47MfQCEhaj8hzRDp7hiqIZKBU-aZAGz1xxR8EmRX-v5
 # environment
-MANAGERPID = 1265
+MANAGERPID = 1279
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 2338
+GIO_LAUNCHED_DESKTOP_FILE_PID = 9769
 # environment
 _ = /snap/code/82/usr/share/code/code
 # environment
@@ -219,7 +217,7 @@ XDG_RUNTIME_DIR = /run/user/1000
 # environment
 GDK_PIXBUF_MODULE_FILE = /home/enzo/snap/code/common/.cache/gdk-pixbuf-loaders.cache
 # environment
-JOURNAL_STREAM = 8:22331
+JOURNAL_STREAM = 8:23333
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -258,6 +256,7 @@ SNAP_COMMON = /var/snap/code/common
 SNAP_USER_DATA = /home/enzo/snap/code/82
 # environment
 XDG_MENU_PREFIX = gnome-
+ 
 # environment
 GDMSESSION = ubuntu
 # environment
@@ -271,9 +270,9 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 
 # Directories
 
-# . (device 2051, inode 1061832): 11 files, no impossibilities.
+# . (device 2051, inode 1061832): 13 files, no impossibilities.
 
-# 11 files, no impossibilities in 1 directories.
+# 13 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -284,10 +283,15 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
- 
-#  Last modified 2021-12-02 14:16:25.914928283
+#  Last modified 2021-12-03 19:05:49.467342675
 #  File has been updated.
 #  Successfully updated.
+
+# Not a target:
+neighbourhood.c:
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
 
 world.o: world.c
 #  Implicit rule search has not been done.
@@ -321,12 +325,19 @@ main.c:
 #  Modification time never checked.
 #  File has not been updated.
 
-main: main.c world.c world.o header.h
+main: main.c world.c world.o neighbourhood.c neighbourhood.o header.h
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
 #  recipe to execute (from 'Makefile', line 4):
 	gcc main.c world.o header.h -o main -lpthread
+
+neighbourhood.o: neighbourhood.c
+#  Implicit rule search has not been done.
+#  Modification time never checked.
+#  File has not been updated.
+#  recipe to execute (from 'Makefile', line 10):
+	gcc -c neighbourhood.c
 
 # Not a target:
 header.h:
@@ -335,19 +346,19 @@ header.h:
 #  File has not been updated.
 
 # files hash-table stats:
-# Load=9/1024=1%, Rehash=0, Collisions=0/25=0%
+# Load=11/1024=1%, Rehash=0, Collisions=0/31=0%
 # VPATH Search Paths
 
 # No 'vpath' search paths.
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 16 / storage = 125 B / avg = 7 B
-# current buf: size = 8162 B / used = 125 B / count = 16 / avg = 7 B
+# strcache buffers: 1 (0) / strings = 18 / storage = 157 B / avg = 8 B
+# current buf: size = 8162 B / used = 157 B / count = 18 / avg = 8 B
 
-# strcache performance: lookups = 29 / hit rate = 44%
+# strcache performance: lookups = 36 / hit rate = 50%
 # hash-table stats:
-# Load=16/8192=0%, Rehash=0, Collisions=0/29=0%
-# Finished Make data base on Thu Dec  2 17:44:37 2021
+# Load=18/8192=0%, Rehash=0, Collisions=0/36=0%
+# Finished Make data base on Fri Dec  3 19:06:38 2021
 
  

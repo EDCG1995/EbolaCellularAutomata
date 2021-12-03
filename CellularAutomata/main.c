@@ -4,9 +4,11 @@
 #include <time.h>
 
 int world[Xaxis][Yaxis];
+int temp[Xaxis][Yaxis];
 int main()
 {
   srand(time(NULL));
   generateWorld();
+
   return 0;
 }

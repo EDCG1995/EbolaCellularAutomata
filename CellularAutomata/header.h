@@ -6,7 +6,11 @@
 #define ZERO 0.05
 
 void generateWorld();
+void checkNeighbourhood();
+float setInfectionRate(int infectedNeighbours, int deceased);
+void checkNeighbourhood(int row, int col);
 extern int world[Xaxis][Yaxis];
+extern int temp[Xaxis][Yaxis];
 
 enum cellStatus
 {
