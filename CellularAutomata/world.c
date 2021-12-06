@@ -4,6 +4,7 @@
 #include "header.h"
 
 extern int world[Xaxis][Yaxis];
+extern int temp[Xaxis][Yaxis];
 void generateWorld()
 {
   int row;
@@ -15,9 +16,9 @@ void generateWorld()
   //gets the percetage of populated cells ex. 0.95 (95%)
   float populated = (float)POPULATION / (Xaxis * Yaxis);
   printf("%f", populated);
-  for (row = 0; row <= Xaxis; row++)
+  for (row = 0; row < Xaxis; row++)
   {
-    for (col = 0; col <= Yaxis; col++)
+    for (col = 0; col < Yaxis; col++)
     {
       random = (float)rand() / (float)RAND_MAX;
       //cell will be a susceptible person

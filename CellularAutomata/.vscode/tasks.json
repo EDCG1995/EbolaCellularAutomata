@@ -11,6 +11,7 @@
 				"${file}",
 				"header.h",
 				"world.c",
+				"neighbourhood.c",
 				"-o",
 				"${fileDirname}/bin/${fileBasenameNoExtension}"
 			],

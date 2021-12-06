@@ -1,1 +1,1 @@
-{"buildTargets":["main","world.o"],"launchTargets":[],"customConfigurationProvider":{"workspaceBrowse":{"browsePath":[],"compilerArgs":[]},"fileIndex":[]}}
+{"buildTargets":["main","neighbourhood.o","world.o"],"launchTargets":[],"customConfigurationProvider":{"workspaceBrowse":{"browsePath":[],"compilerArgs":[]},"fileIndex":[]}}
