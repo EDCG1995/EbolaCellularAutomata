@@ -41,5 +41,5 @@ void generateWorld()
       printf("cell [%d][%d] is : %d \n", row, col, world[row][col]);
     }
   }
-  printf("Population rate: %f \nSusceptible: %d \nInfected: %d \nEmpty:%d", populated, susc, inf, empty);
+  printf("Population rate: %f \nSusceptible: %d \nInfected: %d \nEmpty:%d\n", populated, susc, inf, empty);
 }
