@@ -87,9 +87,8 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary)
     int summ = 0;
     for (lowerBoundary; lowerBoundary <= upperBoundary; lowerBoundary++)
     {
-        summ++;
+        
     }
-    printf("total amount %d", summ);
     int row = 0; //change this bitch
     int col = 0; //change this bitch
     int infNeigh = 0;
