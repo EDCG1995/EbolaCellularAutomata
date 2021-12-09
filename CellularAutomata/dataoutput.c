@@ -14,11 +14,8 @@ void storeoutput(int susc, int inf, int empty)
         printf("Can't open file\n");
     }
 
-
     // Saving data in file
     fprintf(fp, "%d, %d, %d\n", susc, inf, empty);
-
-    printf("\nNew Account added to record");
 
     fclose(fopen("dataoutput.csv", "w"));
 
