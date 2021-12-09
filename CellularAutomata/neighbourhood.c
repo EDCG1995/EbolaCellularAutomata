@@ -84,8 +84,8 @@ float setInfectionRate(int infectedNeighbours, int deceased)
 
 void checkNeighbourhood(int lowerBoundary, int upperBoundary)
 {
-    int summ = 0;
-    int row = lowerBoundary; //change this bitch
+    
+    int row = lowerBoundary; 
     int col;
     for (row; row <= upperBoundary; row++)
     {
@@ -139,6 +139,10 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary)
                 dead += 1;
 
             float infRate= setInfectionRate(infNeigh, dead);
+            float random = (float)rand() / (float)RAND_MAX;
+            if(random < infRate){
+                temp[row][col];
+            }
         }
     }
 }
