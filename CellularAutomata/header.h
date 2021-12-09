@@ -6,17 +6,22 @@
 #define THREADS 4
 
 void generateWorld();
+
 void *test(void *rank);
+
 void *summ(void *my_rank);
+
 void checkNeighbourhood();
+
 float setInfectionRate(int infectedNeighbours, int deceased);
+
 void checkNeighbourhood(int row, int col);
+
 extern int world[Xaxis][Yaxis];
 extern int temp[Xaxis][Yaxis];
 extern int piece;
 
-enum cellStatus
-{
+enum cellStatus {
     SUSC, /*is 0*/
     INF,  /*is 1*/
     DEAD, /*is 2*/
