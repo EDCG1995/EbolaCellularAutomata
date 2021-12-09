@@ -15,9 +15,7 @@ int main()
   long thread;
   thread_handles = malloc(THREADS*sizeof(pthread_t));
   for(thread = 0; thread < THREADS; thread++){
-    
     pthread_create(&thread_handles[thread], NULL, test, (void *)thread);
-    printf("Hello from main");
   }
   for(thread =0; thread<THREADS; thread++){
     pthread_join(thread_handles[thread], NULL);

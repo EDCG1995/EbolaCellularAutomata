@@ -16,7 +16,7 @@ extern int temp[Xaxis][Yaxis];
 void *test(void *rank)
 {
     long r = (long)rank;
-    printf("thread %ld", r);
+    
 }
 
 float setInfectionRate(int infectedNeighbours, int deceased)
