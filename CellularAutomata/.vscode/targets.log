@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Dec  9 13:55:05 2021
+# Make data base, printed on Thu Dec  9 18:44:31 2021
 
 # Variables
 
@@ -25,7 +25,7 @@ SNAP_INSTANCE_KEY =
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-1b09621a-e98e-47f4-8b13-2b20571a0831.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-8469fec3-f970-4a91-93d9-bf981552fa69.sock
 # environment
 VSCODE_CWD = /home/enzo
 # default
@@ -101,7 +101,7 @@ SNAP_REEXEC =
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 3245
+VSCODE_PID = 32574
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
@@ -209,7 +209,7 @@ SNAP_CONTEXT = YedDrHN1o47MfQCEhaj8hzRDp7hiqIZKBU-aZAGz1xxR8EmRX-v5
 # environment
 MANAGERPID = 1287
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 3198
+GIO_LAUNCHED_DESKTOP_FILE_PID = 32528
 # environment
 _ = /snap/code/83/usr/share/code/code
 # environment
@@ -269,9 +269,9 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 
 # Directories
 
-# . (device 2051, inode 1061832): 14 files, no impossibilities.
+# . (device 2051, inode 1061832): 15 files, no impossibilities.
 
-# 14 files, no impossibilities in 1 directories.
+# 15 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -280,10 +280,10 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 # Files
 
 # Not a target:
- 
 Makefile:
 #  Implicit rule search has been done.
-#  Last modified 2021-12-09 13:55:02.187390635
+ 
+#  Last modified 2021-12-09 18:42:11.348363343
 #  File has been updated.
 #  Successfully updated.
 
@@ -353,12 +353,12 @@ header.h:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 20 / storage = 172 B / avg = 8 B
-# current buf: size = 8162 B / used = 172 B / count = 20 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 20 / storage = 181 B / avg = 9 B
+# current buf: size = 8162 B / used = 181 B / count = 20 / avg = 9 B
 
-# strcache performance: lookups = 37 / hit rate = 45%
+# strcache performance: lookups = 38 / hit rate = 47%
 # hash-table stats:
-# Load=20/8192=0%, Rehash=0, Collisions=0/37=0%
-# Finished Make data base on Thu Dec  9 13:55:05 2021
+# Load=20/8192=0%, Rehash=0, Collisions=0/38=0%
+# Finished Make data base on Thu Dec  9 18:44:31 2021
 
  
