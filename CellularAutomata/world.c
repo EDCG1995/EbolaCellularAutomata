@@ -45,5 +45,7 @@ void generateWorld()
       #endif
     }
   }
+  #if(DEBUG>o)
   printf("Population: %f \nSusceptible: %d \nInfected: %d \nEmpty:%d\n", populated, susc, inf, empty);
+  #endif
 }

@@ -7,7 +7,10 @@
 int world[Xaxis][Yaxis];
 int temp[Xaxis][Yaxis];
 int piece = Yaxis / THREADS;
-
+int t0 = 0;
+int t1 = 0;
+int t2 = 0;
+int t3 = 0;
 int main()
 {
   srand(time(NULL));

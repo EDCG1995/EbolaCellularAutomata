@@ -13,6 +13,10 @@ FILE NOT READY, NEEDS TO BE WORKED ON:
 extern int world[Xaxis][Yaxis];
 extern int temp[Xaxis][Yaxis];
 extern int piece;
+extern int t0;
+extern int t1;
+extern int t2;
+extern int t3;
 void *test(void *rank)
 {
 
@@ -27,19 +31,23 @@ void *test(void *rank)
     long check = r * piece;
     if (check == 0)
     {
-        checkNeighbourhood(0, 249);
+        
+        checkNeighbourhood(0, 249, r);
     }
     if (check == 250)
     {
-        checkNeighbourhood(250, 499);
+        
+        checkNeighbourhood(250, 499, r);
     }
     if (check == 500)
     {
-        checkNeighbourhood(500, 749);
+        
+        checkNeighbourhood(500, 749, r);
     }
     if (check == 750)
     {
-        checkNeighbourhood(750, 999);
+        
+        checkNeighbourhood(750, 999, r);
     }
 }
 
@@ -78,14 +86,14 @@ float setInfectionRate(int infectedNeighbours, int deceased)
         infectionRate = 0.0;
     }
     infectionRate += (deceased * 0.05); //the infection rate increases 5% for every infected neighbour
-    printf("inf neigh= %d, dec= %d, infRate = %f \n", infectedNeighbours, deceased, infectionRate);
+    //printf("inf neigh= %d, dec= %d, infRate = %f \n", infectedNeighbours, deceased, infectionRate);
     //Return infectionRate;
 }
 
-void checkNeighbourhood(int lowerBoundary, int upperBoundary)
+void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r)
 {
-    
-    int row = lowerBoundary; 
+
+    int row = lowerBoundary;
     int col;
     for (row; row <= upperBoundary; row++)
     {
@@ -138,11 +146,71 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary)
             if (downLeft == DEAD)
                 dead += 1;
 
-            float infRate= setInfectionRate(infNeigh, dead);
+            float infRate = setInfectionRate(infNeigh, dead);
             float random = (float)rand() / (float)RAND_MAX;
-            if(random < infRate){
-                temp[row][col];
+            if (random < infRate)
+            {
+                temp[row][col] = INF;
             }
         }
     }
+    printf("thread %ld finished \n",r );
+    
+
+    if (r == 0)
+    {
+        t0 = 1;
+        if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
+        {
+            world[Xaxis][Yaxis] = temp[Xaxis][Yaxis];
+            t0 = 0;
+            t1 = 0;
+            t2 = 0;
+            t3 = 0;
+            printf("thread %ld updated the table", r);
+        }
+    }
+
+    if (r == 1)
+    {
+        t1 = 1;
+        if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
+        {
+            world[Xaxis][Yaxis] = temp[Xaxis][Yaxis];
+            t0 = 0;
+            t1 = 0;
+            t2 = 0;
+            t3 = 0;
+            printf("thread %ld updated the table", r);
+        }
+    }
+
+    if (r == 2)
+    {
+        t2 = 1;
+        if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
+        {
+            world[Xaxis][Yaxis] = temp[Xaxis][Yaxis];
+            t0 = 0;
+            t1 = 0;
+            t2 = 0;
+            t3 = 0;
+            printf("thread %ld updated the table", r);
+        }
+    }
+
+    if (r == 3)
+    {
+        t3 = 1;
+        if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
+        {
+            world[Xaxis][Yaxis] = temp[Xaxis][Yaxis];
+            t0 = 0;
+            t1 = 0;
+            t2 = 0;
+            t3 = 0;
+            printf("thread %ld updated the table", r);
+        }
+    }
+    
 }
