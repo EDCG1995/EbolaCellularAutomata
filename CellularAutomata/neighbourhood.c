@@ -159,7 +159,7 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r)
     printf("Thread %ld changed %d to infected and %d to dead \n",r,infcounter, deadCounter);
     printf("thread %ld finished \n",r );
     
-
+/*
     if (r == 0)
     {
         t0 = 1;
@@ -215,5 +215,5 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r)
             printf("thread %ld updated the table", r);
         }
     }
-    
+    */
 }
