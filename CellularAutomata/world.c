@@ -14,8 +14,8 @@ void generateWorld()
   int inf = 0;
   int empty = 0;
   //gets the percetage of populated cells ex. 0.95 (95%)
-  float populated = (float)POPULATION / (Xaxis * Yaxis);
-  printf("%f", populated);
+  float a = 0.95 *(Xaxis * Yaxis);
+  float populated = a /(Xaxis * Yaxis);
   for (row = 0; row < Xaxis; row++)
   {
     for (col = 0; col < Yaxis; col++)
@@ -39,8 +39,8 @@ void generateWorld()
         world[row][col] = EMPTY;
         empty += 1;
       }
-      printf("cell [%d][%d] is : %d \n", row, col, world[row][col]);
+      printf("cell [%d][%d] is : %d\n", row, col, world[row][col]);
     }
   }
-  printf("Population rate: %f \nSusceptible: %d \nInfected: %d \nEmpty:%d\n", populated, susc, inf, empty);
+  printf("Population: %f \nSusceptible: %d \nInfected: %d \nEmpty:%d\n", populated, susc, inf, empty);
 }

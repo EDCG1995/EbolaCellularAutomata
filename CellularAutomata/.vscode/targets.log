@@ -2,42 +2,74 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 make: *** No rule to make target 'all'.  Stop.
  
 # GNU Make 4.3
+ 
 # Built for x86_64-pc-linux-gnu
+ 
 # Copyright (C) 1988-2020 Free Software Foundation, Inc.
+ 
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+ 
 # This is free software: you are free to change and redistribute it.
+ 
 # There is NO WARRANTY, to the extent permitted by law.
+ 
 
-# Make data base, printed on Fri Dec  3 19:16:02 2021
+ 
+# Make data base, printed on Thu Dec  9 11:08:31 2021
+ 
 
 # Variables
+ 
 
+ 
 # environment
+ 
 GDK_BACKEND = x11
+ 
 # environment
+ 
 LC_ALL = C
+ 
 # environment
+ 
 GNOME_SHELL_SESSION_MODE = ubuntu
+ 
 # environment
+ 
 SSH_AGENT_LAUNCHER = gnome-keyring
+ 
 # environment
+ 
 SNAP_INSTANCE_KEY = 
+ 
 # environment
+ 
 GJS_DEBUG_OUTPUT = stderr
+ 
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-bc9311de-4873-44d1-b9c6-923dc7fd39f9.sock
+ 
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-1b09621a-e98e-47f4-8b13-2b20571a0831.sock
+ 
 # environment
+ 
 VSCODE_CWD = /home/enzo
+ 
 # default
+ 
 MAKE_COMMAND := make
+ 
 # environment
+ 
 QT_ACCESSIBILITY = 1
+ 
 # automatic
+ 
 @D = $(patsubst %/,%,$(dir $@))
+ 
 # environment
 SNAP_INSTANCE_NAME = code
 # environment
-GDK_PIXBUF_MODULEDIR = /snap/code/82/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
+GDK_PIXBUF_MODULEDIR = /snap/code/83/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # default
@@ -55,11 +87,11 @@ VSCODE_LOG_STACK = false
 # automatic
 %F = $(notdir $%)
 # environment
-VSCODE_CODE_CACHE_PATH = /home/enzo/.config/Code/CachedData/ccbaa2d27e38e5afa3e5c21c1c7bef4657064247
+VSCODE_CODE_CACHE_PATH = /home/enzo/.config/Code/CachedData/7db1a2b88f7557e0a43fec75b6ba7e50b3e9f77e
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.9GBGD1
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.VGNCE1
 # default
 .LOADED := 
 # default
@@ -101,7 +133,7 @@ SNAP_REEXEC =
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-VSCODE_PID = 12321
+VSCODE_PID = 3245
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
@@ -109,7 +141,7 @@ XDG_SESSION_TYPE = wayland
 # environment
 BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
 # environment
-SESSION_MANAGER = local/enzo-VirtualBox:@/tmp/.ICE-unix/1432,unix/enzo-VirtualBox:/tmp/.ICE-unix/1432
+SESSION_MANAGER = local/enzo-VirtualBox:@/tmp/.ICE-unix/1441,unix/enzo-VirtualBox:/tmp/.ICE-unix/1441
 # automatic
 *F = $(notdir $*)
 # environment
@@ -155,11 +187,11 @@ LANGUAGE = en_IE:en
 # environment
 SNAP_USER_COMMON = /home/enzo/snap/code/common
 # environment
-SNAP = /snap/code/82
+SNAP = /snap/code/83
 # environment
-INVOCATION_ID = 0809c547b39f419fbd7adf1dd730435d
+INVOCATION_ID = 8e0760b5260943e1afd93bf8bef2d638
 # environment
-SNAP_REVISION = 82
+SNAP_REVISION = 83
 # environment
 SNAP_REAL_HOME = /home/enzo
 # environment
@@ -203,21 +235,21 @@ MAKE_VERSION := 4.3
 # environment
 DISABLE_WAYLAND = 1
 # environment
-SNAP_DATA = /var/snap/code/82
+SNAP_DATA = /var/snap/code/83
 # environment
 SNAP_CONTEXT = YedDrHN1o47MfQCEhaj8hzRDp7hiqIZKBU-aZAGz1xxR8EmRX-v5
 # environment
-MANAGERPID = 1279
+MANAGERPID = 1287
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 12276
+GIO_LAUNCHED_DESKTOP_FILE_PID = 3198
 # environment
-_ = /snap/code/82/usr/share/code/code
+_ = /snap/code/83/usr/share/code/code
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
 GDK_PIXBUF_MODULE_FILE = /home/enzo/snap/code/common/.cache/gdk-pixbuf-loaders.cache
 # environment
-JOURNAL_STREAM = 8:23333
+JOURNAL_STREAM = 8:23842
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -229,11 +261,11 @@ QT_IM_MODULE = ibus
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-VSCODE_IPC_HOOK = /run/user/1000/vscode-b4a2f94a-1.62.3-main.sock
+VSCODE_IPC_HOOK = /run/user/1000/vscode-b4a2f94a-1.63.0-main.sock
 # environment
 SNAP_NAME = code
 # environment
-GSETTINGS_SCHEMA_DIR = /snap/code/82/usr/share/glib-2.0/schemas
+GSETTINGS_SCHEMA_DIR = /snap/code/83/usr/share/glib-2.0/schemas
 # environment
 IM_CONFIG_PHASE = 1
 # default
@@ -241,7 +273,7 @@ IM_CONFIG_PHASE = 1
 # automatic
 <F = $(notdir $<)
 # environment
-SNAP_VERSION = ccbaa2d2
+SNAP_VERSION = 7db1a2b8
 # default
 SUFFIXES := 
 # environment
@@ -253,7 +285,7 @@ SNAP_COMMON = /var/snap/code/common
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
 # environment
-SNAP_USER_DATA = /home/enzo/snap/code/82
+SNAP_USER_DATA = /home/enzo/snap/code/83
 # environment
 XDG_MENU_PREFIX = gnome-
 # environment
@@ -269,9 +301,9 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 
 # Directories
 
-# . (device 2051, inode 1061832): 15 files, no impossibilities.
+# . (device 2051, inode 1061832): 14 files, no impossibilities.
 
-# 15 files, no impossibilities in 1 directories.
+# 14 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -280,7 +312,6 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 # Files
 
 # Not a target:
- 
 Makefile:
 #  Implicit rule search has been done.
 #  Last modified 2021-12-03 19:05:49.467342675
@@ -313,7 +344,9 @@ world.c:
 #  File has not been updated.
 
 # Not a target:
+ 
 all:
+ 
 #  Command line target.
 #  Implicit rule search has been done.
 #  File does not exist.
@@ -353,12 +386,12 @@ header.h:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 20 / storage = 185 B / avg = 9 B
-# current buf: size = 8162 B / used = 185 B / count = 20 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 19 / storage = 167 B / avg = 8 B
+# current buf: size = 8162 B / used = 167 B / count = 19 / avg = 8 B
 
-# strcache performance: lookups = 38 / hit rate = 47%
+# strcache performance: lookups = 37 / hit rate = 48%
 # hash-table stats:
-# Load=20/8192=0%, Rehash=0, Collisions=0/38=0%
-# Finished Make data base on Fri Dec  3 19:16:02 2021
+# Load=19/8192=0%, Rehash=0, Collisions=0/37=0%
+# Finished Make data base on Thu Dec  9 11:08:31 2021
 
  

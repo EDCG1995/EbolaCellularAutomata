@@ -1,8 +1,7 @@
 #ifndef HEADER_H
 #define HEADER_H
-#define Xaxis 100
-#define Yaxis 100
-#define POPULATION 9500
+#define Xaxis 10
+#define Yaxis 10
 #define ZERO 0.05
 
 void generateWorld();
