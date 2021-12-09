@@ -3,8 +3,11 @@
 #define Xaxis 1000
 #define Yaxis 1000
 #define ZERO 0.05
+#define THREADS 4
 
 void generateWorld();
+void *test(void *rank);
+void *summ(void *my_rank);
 void checkNeighbourhood();
 float setInfectionRate(int infectedNeighbours, int deceased);
 void checkNeighbourhood(int row, int col);
@@ -21,3 +24,5 @@ enum cellStatus
 };
 
 #endif
+
+
