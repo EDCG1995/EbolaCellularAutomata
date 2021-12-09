@@ -13,15 +13,6 @@ FILE NOT READY, NEEDS TO BE WORKED ON:
 extern int world[Xaxis][Yaxis];
 extern int temp[Xaxis][Yaxis];
 
-void *summ(void *my_rank){
-	long rank = (long) my_rank;
-  srand((unsigned int)time(NULL));
-  float r = rand()/(float)RAND_MAX;
-  r = r * 10.0;
-    printf("sum excecuted from thread %ld", rank);
-  
-}
-
 void *test(void *rank)
 {
     long r = (long)rank;

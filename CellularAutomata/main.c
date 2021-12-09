@@ -1,12 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-<<<<<<< Updated upstream
-=======
-<<<<<<< HEAD
 #include <pthread.h>
-=======
->>>>>>> ab1466c201ae69291d96fdc6b1b7930c43ffd5ed
->>>>>>> Stashed changes
 #include <time.h>
 #include "header.h"
 
