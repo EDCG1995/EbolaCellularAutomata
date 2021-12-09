@@ -6,14 +6,20 @@
 
 extern int world[Xaxis][Yaxis];
 extern int temp[Xaxis][Yaxis];
+
+int susc;
+int inf;
+int empty;
+
 void generateWorld()
 {
   int row;
   int col;
   float random;
-  int susc = 0;
-  int inf = 0;
-  int empty = 0;
+  susc = 0;
+  inf = 0;
+  empty = 0;
+
   //gets the percetage of populated cells ex. 0.95 (95%)
   float a = 0.95 *(Xaxis * Yaxis);
   float populated = a /(Xaxis * Yaxis);
