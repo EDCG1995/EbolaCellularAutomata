@@ -85,57 +85,60 @@ float setInfectionRate(int infectedNeighbours, int deceased)
 void checkNeighbourhood(int lowerBoundary, int upperBoundary)
 {
     int summ = 0;
-    for (lowerBoundary; lowerBoundary <= upperBoundary; lowerBoundary++)
+    int row = lowerBoundary; //change this bitch
+    int col;
+    for (row; row <= upperBoundary; row++)
     {
-        
+        for (col = 0; col < Yaxis; col++)
+        {
+
+            int infNeigh = 0;
+            int dead = 0;
+
+            int up = world[row][col + 1];
+            int down = world[row][col - 1];
+            int left = world[row - 1][col];
+            int right = world[row + 1][col];
+            int upLeft = world[row - 1][col + 1];
+            int upRight = world[row + 1][col + 1];
+            int downLeft = world[row - 1][col - 1];
+            int downRight = world[row - 1][col + 1];
+            //check for infected neighbours
+            if (right == INF)
+                infNeigh += 1;
+            if (left == INF)
+                infNeigh += 1;
+            if (up == INF)
+                infNeigh += 1;
+            if (down == INF)
+                infNeigh += 1;
+            if (upLeft == INF)
+                infNeigh += 1;
+            if (upRight == INF)
+                infNeigh += 1;
+            if (downLeft == INF)
+                infNeigh += 1;
+            if (downRight == INF)
+                infNeigh += 1;
+            //check for dead neighbours
+            if (right == DEAD)
+                dead += 1;
+            if (left == DEAD)
+                dead += 1;
+            if (up == DEAD)
+                dead += 1;
+            if (down == DEAD)
+                dead += 1;
+            if (upRight == DEAD)
+                dead += 1;
+            if (upLeft == DEAD)
+                dead += 1;
+            if (downRight == DEAD)
+                dead += 1;
+            if (downLeft == DEAD)
+                dead += 1;
+
+            float infRate= setInfectionRate(infNeigh, dead);
+        }
     }
-    int row = 0; //change this bitch
-    int col = 0; //change this bitch
-    int infNeigh = 0;
-    int dead = 0;
-
-    int up = world[row][col + 1];
-    int down = world[row][col - 1];
-    int left = world[row - 1][col];
-    int right = world[row + 1][col];
-    int upLeft = world[row - 1][col + 1];
-    int upRight = world[row + 1][col + 1];
-    int downLeft = world[row - 1][col - 1];
-    int downRight = world[row - 1][col + 1];
-    //check for infected neighbours
-    if (right == INF)
-        infNeigh += 1;
-    if (left == INF)
-        infNeigh += 1;
-    if (up == INF)
-        infNeigh += 1;
-    if (down == INF)
-        infNeigh += 1;
-    if (upLeft == INF)
-        infNeigh += 1;
-    if (upRight == INF)
-        infNeigh += 1;
-    if (downLeft == INF)
-        infNeigh += 1;
-    if (downRight == INF)
-        infNeigh += 1;
-    //check for dead neighbours
-    if (right == DEAD)
-        dead += 1;
-    if (left == DEAD)
-        dead += 1;
-    if (up == DEAD)
-        dead += 1;
-    if (down == DEAD)
-        dead += 1;
-    if (upRight == DEAD)
-        dead += 1;
-    if (upLeft == DEAD)
-        dead += 1;
-    if (downRight == DEAD)
-        dead += 1;
-    if (downLeft == DEAD)
-        dead += 1;
-
-    setInfectionRate(infNeigh, dead);
 }
