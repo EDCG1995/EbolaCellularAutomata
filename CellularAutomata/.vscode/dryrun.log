@@ -1,6 +1,0 @@
-make all --dry-run --keep-going --print-directory
-make: Entering directory '/home/enzo/Documents/Cellular Automata project/EbolaCellularAutomata/CellularAutomata'
-make: Leaving directory '/home/enzo/Documents/Cellular Automata project/EbolaCellularAutomata/CellularAutomata'
- 
-make: *** No rule to make target 'all'.
- 
