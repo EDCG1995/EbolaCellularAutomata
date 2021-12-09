@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "header.h"
 #include <time.h>
+#include "header.h"
 
 int world[Xaxis][Yaxis];
 int temp[Xaxis][Yaxis];

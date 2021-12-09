@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <pthread.h>
+#define DEBUG 0
 #include "header.h"
 
 extern int world[Xaxis][Yaxis];
@@ -39,7 +40,9 @@ void generateWorld()
         world[row][col] = EMPTY;
         empty += 1;
       }
+      #if (DEBUG > 0)
       printf("cell [%d][%d] is : %d\n", row, col, world[row][col]);
+      #endif
     }
   }
   printf("Population: %f \nSusceptible: %d \nInfected: %d \nEmpty:%d\n", populated, susc, inf, empty);
