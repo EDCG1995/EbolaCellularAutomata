@@ -17,36 +17,29 @@ extern int t0;
 extern int t1;
 extern int t2;
 extern int t3;
+
 void *test(void *rank)
 {
-
-    /*
-    thread 0 will check 0 to 249
-    thread 1 will check 250 to 499
-    thread 2 will check 500 to 749
-    thread 3 will check 750 999
-    
-    */
     long r = (long)rank;
     long check = r * piece;
     if (check == 0)
     {
-        
+        //thread 0 will check 0 to 249    
         checkNeighbourhood(0, 249, r);
     }
     if (check == 250)
     {
-        
+        //thread 1 will check 250 to 499
         checkNeighbourhood(250, 499, r);
     }
     if (check == 500)
     {
-        
+        //thread 2 will check 500 to 749    
         checkNeighbourhood(500, 749, r);
     }
     if (check == 750)
     {
-        
+        //thread 3 will check 750 999    
         checkNeighbourhood(750, 999, r);
     }
 }
@@ -87,7 +80,7 @@ float setInfectionRate(int infectedNeighbours, int deceased)
     }
     infectionRate += (deceased * 0.05); //the infection rate increases 5% for every infected neighbour
     //printf("inf neigh= %d, dec= %d, infRate = %f \n", infectedNeighbours, deceased, infectionRate);
-    //Return infectionRate;
+    return infectionRate;
 }
 
 void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r)
@@ -95,6 +88,8 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r)
 
     int row = lowerBoundary;
     int col;
+    int infcounter = 0;
+            int deadCounter = 0;
     for (row; row <= upperBoundary; row++)
     {
         for (col = 0; col < Yaxis; col++)
@@ -148,12 +143,20 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r)
 
             float infRate = setInfectionRate(infNeigh, dead);
             float random = (float)rand() / (float)RAND_MAX;
-            if (random < infRate)
+            
+            if (random < infRate && world[row][col]==SUSC)
             {
                 temp[row][col] = INF;
+                infcounter++;
+            }
+            if(random> 0.5 && world[row][col] == INF){
+                temp[row][col] = DEAD;
+                deadCounter++;
             }
         }
+        
     }
+    printf("Thread %ld changed %d to infected and %d to dead \n",r,infcounter, deadCounter);
     printf("thread %ld finished \n",r );
     
 
