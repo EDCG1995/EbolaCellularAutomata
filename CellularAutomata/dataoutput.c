@@ -19,6 +19,8 @@ void storeoutput(int susc, int inf, int empty)
 
     printf("\nNew Account added to record");
 
+    fclose(fopen("dataoutput.csv", "w"));
+
     fclose(fp);
 
 }
