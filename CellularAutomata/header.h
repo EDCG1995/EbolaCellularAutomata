@@ -5,12 +5,13 @@
 #define ZERO 0.05
 #define THREADS 4
 
+
 void generateWorld();
 void *test(void *rank);
 void *summ(void *my_rank);
-void checkNeighbourhood();
 float setInfectionRate(int infectedNeighbours, int deceased);
 void checkNeighbourhood(int row, int col, long r);
+void storeoutput(int susc, int inf, int empty);
 extern int world[Xaxis][Yaxis];
 extern int temp[Xaxis][Yaxis];
 extern int piece;
@@ -18,6 +19,9 @@ extern int t0;
 extern int t1;
 extern int t2;
 extern int t3;
+extern int susc;
+extern int inf;
+extern int empty;
 
 enum cellStatus
 {

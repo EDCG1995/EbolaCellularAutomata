@@ -26,5 +26,8 @@ int main()
   }
   free(thread_handles);
 
+  storeoutput(susc, inf, empty);
+
   return 0;
 }
+
