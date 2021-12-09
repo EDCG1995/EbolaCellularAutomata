@@ -16,6 +16,22 @@ extern int temp[Xaxis][Yaxis];
 void *test(void *rank)
 {
     long r = (long)rank;
+    switch (r)
+    {
+    case 0:
+        printf("thread 0");
+        break;
+    case 1:
+        printf("thread 1");
+        break;
+    case 2:
+        printf("thread 2");
+        break;
+    
+    default:
+    printf("thread 3");
+        break;
+    }
     
 }
 

@@ -13,6 +13,7 @@ float setInfectionRate(int infectedNeighbours, int deceased);
 void checkNeighbourhood(int row, int col);
 extern int world[Xaxis][Yaxis];
 extern int temp[Xaxis][Yaxis];
+extern int piece;
 
 enum cellStatus
 {

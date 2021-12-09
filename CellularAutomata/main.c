@@ -6,6 +6,7 @@
 
 int world[Xaxis][Yaxis];
 int temp[Xaxis][Yaxis];
+int piece = Yaxis / THREADS;
 
 int main()
 {
