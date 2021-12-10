@@ -4,7 +4,7 @@
 #define Yaxis 1000
 #define ZERO 0.05
 #define THREADS 4
-#define GENS 2
+#define GENS 50
 
 void generateWorld();
 

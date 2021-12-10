@@ -42,7 +42,7 @@ int main()
       pthread_join(thread_handles[thread], NULL);
     }
     free(thread_handles);
-  }
+  
   pthread_mutex_destroy(&test_mutex);
   
   int s = 0;
@@ -67,12 +67,14 @@ int main()
       case DEAD:
         d++;
         break;
-      default:
+      case REC:
         break;
       }
     }
   }
   fprintf(fp, "%d, %d, %d, %d\n", s, in, d ,e);
+  }
+  
 
   fclose(fp);
   return 0;
