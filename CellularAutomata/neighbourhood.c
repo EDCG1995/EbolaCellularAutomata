@@ -13,10 +13,12 @@ FILE NOT READY, NEEDS TO BE WORKED ON:
 extern int world[Xaxis][Yaxis];
 extern int temp[Xaxis][Yaxis];
 extern int piece;
+extern int *p;
 extern int t0;
 extern int t1;
 extern int t2;
 extern int t3;
+extern int genCount;
 void *test(void *rank)
 {
 
@@ -31,22 +33,22 @@ void *test(void *rank)
     long check = r * piece;
     if (check == 0)
     {
-        
+
         checkNeighbourhood(0, 249, r);
     }
     if (check == 250)
     {
-        
+
         checkNeighbourhood(250, 499, r);
     }
     if (check == 500)
     {
-        
+
         checkNeighbourhood(500, 749, r);
     }
     if (check == 750)
     {
-        
+
         checkNeighbourhood(750, 999, r);
     }
 }
@@ -148,25 +150,23 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r)
 
             float infRate = setInfectionRate(infNeigh, dead);
             float random = (float)rand() / (float)RAND_MAX;
-            if (random < infRate)
+            if (random < infRate && random >= 0.3)
             {
                 temp[row][col] = INF;
             }
+            if (random < 0.3){
+                temp[row][col] = DEAD;
+            }
         }
     }
-    printf("thread %ld finished \n",r );
-    
+    printf("thread %ld finished \n", r);
 
     if (r == 0)
     {
         t0 = 1;
         if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
         {
-            world[Xaxis][Yaxis] = temp[Xaxis][Yaxis];
-            t0 = 0;
-            t1 = 0;
-            t2 = 0;
-            t3 = 0;
+            updateWorld();
             printf("thread %ld updated the table", r);
         }
     }
@@ -176,11 +176,7 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r)
         t1 = 1;
         if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
         {
-            world[Xaxis][Yaxis] = temp[Xaxis][Yaxis];
-            t0 = 0;
-            t1 = 0;
-            t2 = 0;
-            t3 = 0;
+            updateWorld();
             printf("thread %ld updated the table", r);
         }
     }
@@ -190,11 +186,7 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r)
         t2 = 1;
         if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
         {
-            world[Xaxis][Yaxis] = temp[Xaxis][Yaxis];
-            t0 = 0;
-            t1 = 0;
-            t2 = 0;
-            t3 = 0;
+            updateWorld();
             printf("thread %ld updated the table", r);
         }
     }
@@ -204,13 +196,26 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r)
         t3 = 1;
         if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
         {
-            world[Xaxis][Yaxis] = temp[Xaxis][Yaxis];
-            t0 = 0;
-            t1 = 0;
-            t2 = 0;
-            t3 = 0;
+            updateWorld();
+
             printf("thread %ld updated the table", r);
         }
     }
+}
+void updateWorld()
+{
+    for (int i = 0; i < Xaxis; i++)
+    {
+        for (int j = 0; j < Yaxis; j++)
+        {
+            printf("before: %d, ", world[i][j]);
+            p = &temp[i][j];
+            printf("after: %d, \n", world[i][j]);
+        }
+    }
+    t0 = 0;
+    t1 = 0;
+    t2 = 0;
+    t3 = 0;
     
 }

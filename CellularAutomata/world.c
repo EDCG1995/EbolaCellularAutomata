@@ -18,7 +18,7 @@ void generateWorld()
   float random;
   susc = 0;
   inf = 0;
-  empty = 0;
+  empty = 0; 
 
   //gets the percetage of populated cells ex. 0.95 (95%)
   float a = 0.95 *(Xaxis * Yaxis);
@@ -47,7 +47,7 @@ void generateWorld()
         empty += 1;
       }
       #if (DEBUG > 0)
-      printf("cell [%d][%d] is : %d\n", row, col, world[row][col]);
+      printf("cell [%d][%d] is : %ld\n", row, col, world[row][col]);
       #endif
     }
   }

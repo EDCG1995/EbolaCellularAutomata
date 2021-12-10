@@ -4,11 +4,12 @@
 #define Yaxis 1000
 #define ZERO 0.05
 #define THREADS 4
+#define GENS 5
 
 
 void generateWorld();
+void updateWorld();
 void *test(void *rank);
-void *summ(void *my_rank);
 float setInfectionRate(int infectedNeighbours, int deceased);
 void checkNeighbourhood(int row, int col, long r);
 void storeoutput(int susc, int inf, int empty);
