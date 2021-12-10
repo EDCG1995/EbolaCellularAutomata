@@ -7,39 +7,73 @@
 
 int world[Xaxis][Yaxis];
 int temp[Xaxis][Yaxis];
-int *p = &world[0][0];
+int (*p)[Xaxis][Yaxis];
 int piece = Yaxis / THREADS;
 int t0 = 0;
 int t1 = 0;
 int t2 = 0;
 int t3 = 0;
-int genCount =0;
-FILE* fp;
+int genCount = 0;
+FILE *fp;
+pthread_mutex_t test_mutex;
 int main()
 {
   fp = fopen("dataoutput.csv", "a+");
-  if (!fp) {
-        // Error in file opening
-        printf("Can't open file\n");
-    }
+  if (!fp)
+  {
+    // Error in file opening
+    printf("Can't open file\n");
+  }
   fclose(fopen("dataoutput.csv", "w"));
   srand(time(NULL));
   generateWorld();
   pthread_t *thread_handles;
   long thread;
-  for(int i = 0; i< GENS; i++){
-  thread_handles = malloc(THREADS * sizeof(pthread_t));
-  for (thread = 0; thread < THREADS; thread++)
+  pthread_mutex_init(&test_mutex, NULL);
+  for (int i = 0; i < GENS; i++)
   {
-    pthread_create(&thread_handles[thread], NULL, test, (void *)thread);
+    thread_handles = malloc(THREADS * sizeof(pthread_t));
+    for (thread = 0; thread < THREADS; thread++)
+    {
+      pthread_create(&thread_handles[thread], NULL, test, (void *)thread);
+    }
+    for (thread = 0; thread < THREADS; thread++)
+    {
+      pthread_join(thread_handles[thread], NULL);
+    }
+    free(thread_handles);
   }
-  for (thread = 0; thread < THREADS; thread++)
+  pthread_mutex_destroy(&test_mutex);
+  
+  int s = 0;
+  int in = 0;
+  int e = 0;
+  int d = 0; 
+  for (int i = 0; i < Xaxis; i++)
   {
-    pthread_join(thread_handles[thread], NULL);
+    for (int j = 0; j < Yaxis; j++)
+    {
+      switch (world[i][j])
+      {
+      case SUSC:
+        s++;
+        break;
+      case INF:
+        in++;
+        break;
+      case EMPTY:
+        e++;
+        break;
+      case DEAD:
+        d++;
+        break;
+      default:
+        break;
+      }
+    }
   }
-  free(thread_handles);
-  }
+  fprintf(fp, "%d, %d, %d, %d\n", s, in, d ,e);
+
   fclose(fp);
   return 0;
-  
 }

@@ -8,21 +8,24 @@ FILE NOT READY, NEEDS TO BE WORKED ON:
 */
 #include <stdlib.h>
 #include <stdio.h>
+#include <pthread.h>
 #include "header.h"
 
 extern int world[Xaxis][Yaxis];
 extern int temp[Xaxis][Yaxis];
 extern int piece;
 extern FILE *fp;
-extern int *p;
+extern int (*p)[Xaxis][Yaxis];
 extern int t0;
 extern int t1;
 extern int t2;
 extern int t3;
 extern int genCount;
+extern pthread_mutex_t test_mutex;
 int sus = 0;
 int infec = 0;
 int empt = 0;
+int de = 0;
 
 void *test(void *rank)
 {
@@ -94,7 +97,7 @@ float setInfectionRate(int infectedNeighbours, int deceased)
     }
     infectionRate += (deceased * 0.05); //the infection rate increases 5% for every infected neighbour
     //printf("inf neigh= %d, dec= %d, infRate = %f \n", infectedNeighbours, deceased, infectionRate);
-    //Return infectionRate;
+    return infectionRate;
 }
 void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r)
 {
@@ -154,64 +157,116 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r)
 
             float infRate = setInfectionRate(infNeigh, dead);
             float random = (float)rand() / (float)RAND_MAX;
-            if (random < infRate && random >= 0.3)
-            {
-                temp[row][col] = INF;
 
-                infec++;
-            }
-            if (random < 0.3)
+            switch (world[row][col])
             {
-                temp[row][col] = DEAD;
+            case SUSC:
+
+                if (random > infRate && random < ZERO)
+                { //if susc becomes infected
+                    temp[row][col] = INF;
+                    pthread_mutex_lock(&test_mutex);
+                    infec++;
+                    pthread_mutex_unlock(&test_mutex);
+                }
+                else if (random > infRate && random > ZERO)
+                {
+                    temp[row][col] = SUSC;
+                    pthread_mutex_lock(&test_mutex);
+                    sus++;
+                    pthread_mutex_unlock(&test_mutex);
+                }
+                break;
+
+            case INF:
+
+                if (random < 0.3)
+                { //30% chance of dying
+                    temp[row][col] = DEAD;
+                    pthread_mutex_lock(&test_mutex);
+                    de++;
+                    pthread_mutex_unlock(&test_mutex);
+                }
+                else if (random > 0.8)
+                { //20% chance of recovering and being susc
+                    temp[row][col] = SUSC;
+                    pthread_mutex_lock(&test_mutex);
+                    sus++;
+                    pthread_mutex_unlock(&test_mutex);
+                }
+                else
+                { //50% chance of remaining infected
+                    temp[row][col] = INF;
+                    pthread_mutex_lock(&test_mutex);
+                    infec++;
+                    pthread_mutex_unlock(&test_mutex);
+                }
+
+                break;
+            case DEAD:
+                if (random <= 0.5)
+                {
+                    temp[row][col] = EMPTY;
+                    pthread_mutex_lock(&test_mutex);
+                    empt++;
+                    pthread_mutex_unlock(&test_mutex);
+                }
+                else
+                {
+                    temp[row][col] = DEAD;
+                    pthread_mutex_lock(&test_mutex);
+                    de++;
+                    pthread_mutex_unlock(&test_mutex);
+                }
+                break;
+            case EMPTY: // empty
+                temp[row][col] = EMPTY;
+                pthread_mutex_lock(&test_mutex);
                 empt++;
+                pthread_mutex_unlock(&test_mutex);
+                break;
             }
-            if (temp[row][col] == SUSC)
+        }
+        printf("thread %ld finished \n", r);
+
+        if (r == 0)
+        {
+            t0 = 1;
+            if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
             {
-                sus++;
+                updateWorld();
+                printf("thread %ld updated the table\n", r);
             }
         }
-    }
-    fprintf(fp, "%d, %d, %d\n", sus, infec, empt);
-    printf("thread %ld finished \n", r);
 
-    if (r == 0)
-    {
-        t0 = 1;
-        if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
+        if (r == 1)
         {
-            updateWorld();
-            printf("thread %ld updated the table\n", r);
+            t1 = 1;
+            if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
+            {
+                updateWorld();
+                printf("thread %ld updated the table\n", r);
+            }
         }
-    }
 
-    if (r == 1)
-    {
-        t1 = 1;
-        if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
+        if (r == 2)
         {
-            updateWorld();
-            printf("thread %ld updated the table\n", r);
+            t2 = 1;
+            if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
+            {
+                updateWorld();
+                printf("thread %ld updated the table\n", r);
+            }
         }
-    }
 
-    if (r == 2)
-    {
-        t2 = 1;
-        if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
+        if (r == 3)
         {
-            updateWorld();
-            printf("thread %ld updated the table\n", r);
-        }
-    }
-
-    if (r == 3)
-    {
-        t3 = 1;
-        if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
-        {
-            updateWorld();
-
-            printf("thread %ld updated the table\n", r);
+            t3 = 1;
+            if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
+            {
+                updateWorld();
+                printf("thread %ld updated the table\n", r);
+            }
         }
     }
 }
@@ -221,15 +276,15 @@ void updateWorld()
     {
         for (int j = 0; j < Yaxis; j++)
         {
-#if (DEBUG > 0)
-            printf("before: %d, ", world[i][j]);
-            p = &temp[i][j];
-            printf("after: %d, \n", world[i][j]);
-#endif
+            world[i][j] = temp[i][j];
         }
     }
+    //fprintf(fp, "%d, %d, %d, %d\n", sus, infec, de, empt);
     t0 = 0;
     t1 = 0;
     t2 = 0;
     t3 = 0;
+    sus = 0;
+    infec = 0;
+    empt = 0;
 }
