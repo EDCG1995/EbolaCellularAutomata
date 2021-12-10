@@ -5,9 +5,9 @@
 #include <time.h>
 #include "header.h"
 
-int world[Xaxis][Yaxis];
+int world[Xaxis][Yaxis] = {-1};
 int temp[Xaxis][Yaxis];
-int (*p)[Xaxis][Yaxis];
+//int (*p)[Xaxis][Yaxis];
 int piece = Yaxis / THREADS;
 int t0 = 0;
 int t1 = 0;
@@ -53,6 +53,7 @@ int main() {
         for (int i = 0; i < Xaxis; i++) {
             for (int j = 0; j < Yaxis; j++) {
                 switch (world[i][j]) {
+
                     case SUSC:
                         s++;
                         break;

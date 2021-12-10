@@ -4,7 +4,7 @@
 #define Yaxis 1000
 #define ZERO 0.0001
 #define THREADS 4
-#define GENS 50
+#define GENS 2000
 #define DEBUG 0
 #define POPULATED 0.95
 
@@ -29,11 +29,11 @@ extern int t2;
 extern int t3;
 
 enum cellStatus {
-    SUSC, /*is 0*/
+    EMPTY, /*is 0*/
     INF,  /*is 1*/
     DEAD, /*is 2*/
     REM,  /*is 3*/
-    EMPTY /*is 4*/
+    SUSC, /*is 4*/
 };
 
 #endif

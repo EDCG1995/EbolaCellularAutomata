@@ -15,7 +15,7 @@ extern int world[Xaxis][Yaxis];
 extern int temp[Xaxis][Yaxis];
 extern int piece;
 extern FILE *fp;
-extern int (*p)[Xaxis][Yaxis];
+//extern int (*p)[Xaxis][Yaxis];
 extern int t0;
 extern int t1;
 extern int t2;
@@ -88,9 +88,8 @@ float setInfectionRate(int infectedNeighbours, int deceased) { //infection rate 
 
 void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r) {
 
-    int row = lowerBoundary;
     int col;
-    for (row; row <= upperBoundary; row++) {
+    for (int row = lowerBoundary; row <= upperBoundary; row++) {
         for (col = 0; col < Yaxis; col++) {
 
             int infNeigh = 0;
@@ -144,13 +143,12 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r) {
 
             switch (world[row][col]) {
                 case SUSC:
-
-                    if (random > infRate && random < ZERO) { //if susc becomes infected
+                    if (random < infRate) { //if susc becomes infected
                         temp[row][col] = INF;
                         pthread_mutex_lock(&test_mutex);
                         infec++;
                         pthread_mutex_unlock(&test_mutex);
-                    } else if (random > infRate && random > ZERO) {
+                    } else {
                         temp[row][col] = SUSC;
                         pthread_mutex_lock(&test_mutex);
                         sus++;
@@ -159,7 +157,7 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r) {
                     break;
 
                 case INF:
-
+//                    printf("%d\t", world[row][col]);
                     if (random < 0.3) { //30% chance of dying
                         temp[row][col] = DEAD;
                         pthread_mutex_lock(&test_mutex);
@@ -176,9 +174,10 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r) {
                         infec++;
                         pthread_mutex_unlock(&test_mutex);
                     }
-
                     break;
+
                 case DEAD:
+//                    printf("%d\t", world[row][col]);
                     if (random <= 0.5) {
                         temp[row][col] = REM;
                         pthread_mutex_lock(&test_mutex);
@@ -191,7 +190,9 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r) {
                         pthread_mutex_unlock(&test_mutex);
                     }
                     break;
+
                 case EMPTY: // empty
+//                    printf("%d\t", world[row][col]);
                     temp[row][col] = EMPTY;
                     pthread_mutex_lock(&test_mutex);
                     emptt++;
@@ -202,34 +203,44 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r) {
 
         if (r == 0) {
             t0 = 1;
-            if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
+            if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1){
                 updateWorld();
+//                printf("%d, %d, %d, %d\t", t0, t1, t2, t3);
+            }
         }
 
         if (r == 1) {
             t1 = 1;
-            if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
+            if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1){
                 updateWorld();
+//                printf("%d, %d, %d, %d\t", t0, t1, t2, t3);
+            }
         }
         if (r == 2) {
             t2 = 1;
-            if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
-
+            if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1){
                 updateWorld();
+//                printf("%d, %d, %d, %d\t", t0, t1, t2, t3);
+            }
         }
         if (r == 3) {
             t3 = 1;
-            if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
+            if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1){
                 updateWorld();
+//                printf("%d, %d, %d, %d\t", t0, t1, t2, t3);
+            }
         }
     }
 }
 
 void updateWorld() {
     for (int i = 0; i < Xaxis; i++) {
-        for (int j = 0; j < Yaxis; j++)
+        for (int j = 0; j < Yaxis; j++) {
             world[i][j] = temp[i][j];
+//            temp[i][j] = 999;
+        }
     }
+//    fprintf(fp, "%d, %d, %d, %d, %d\n", sus, infec, de, rem, emptt);
     t0 = 0;
     t1 = 0;
     t2 = 0;
@@ -238,4 +249,5 @@ void updateWorld() {
     infec = 0;
     rem = 0;
     emptt = 0;
+    de = 0;
 }

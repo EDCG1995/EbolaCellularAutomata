@@ -31,7 +31,7 @@ void generateWorld() {
             }
                 //cell will be an infected person
             else if (random < ZERO && random <= POPULATED)  {
-                printf("%f\t", random);
+//                printf("%f\t", random);
                 world[row][col] = INF;
                 inf += 1;
             }
@@ -40,6 +40,11 @@ void generateWorld() {
                 world[row][col] = EMPTY;
                 empty += 1;
             }
+        }
+    }
+    for (int i = 0; i < Xaxis; i++) {
+        for (int j = 0; j < Yaxis; j++) {
+            temp[i][j] = world[i][j];
         }
     }
     fprintf(fp, "%d, %d, %d, %d, %d\n", susc, inf,dead,rem ,empty);
