@@ -13,6 +13,7 @@ FILE NOT READY, NEEDS TO BE WORKED ON:
 extern int world[Xaxis][Yaxis];
 extern int temp[Xaxis][Yaxis];
 extern int piece;
+extern FILE* fp;
 extern int *p;
 extern int t0;
 extern int t1;
@@ -94,7 +95,9 @@ float setInfectionRate(int infectedNeighbours, int deceased)
 
 void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r)
 {
-
+    int susc = 0;
+    int inf = 0;
+    int empty = 0;
     int row = lowerBoundary;
     int col;
     for (row; row <= upperBoundary; row++)
@@ -153,12 +156,19 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r)
             if (random < infRate && random >= 0.3)
             {
                 temp[row][col] = INF;
+
+                inf++;
             }
             if (random < 0.3){
                 temp[row][col] = DEAD;
+                empty++;
+            }
+            if(temp[row][col] == SUSC){
+                susc++;
             }
         }
     }
+    fprintf(fp, "%d, %d, %d\n", susc, inf, empty);
     printf("thread %ld finished \n", r);
 
     if (r == 0)
@@ -208,9 +218,9 @@ void updateWorld()
     {
         for (int j = 0; j < Yaxis; j++)
         {
-            printf("before: %d, ", world[i][j]);
+            //printf("before: %d, ", world[i][j]);
             p = &temp[i][j];
-            printf("after: %d, \n", world[i][j]);
+            //printf("after: %d, \n", world[i][j]);
         }
     }
     t0 = 0;

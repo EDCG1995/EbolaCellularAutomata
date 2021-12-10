@@ -4,7 +4,7 @@
 #define Yaxis 1000
 #define ZERO 0.05
 #define THREADS 4
-#define GENS 5
+#define GENS 2
 
 
 void generateWorld();
@@ -20,9 +20,6 @@ extern int t0;
 extern int t1;
 extern int t2;
 extern int t3;
-extern int susc;
-extern int inf;
-extern int empty;
 
 enum cellStatus
 {

@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <pthread.h>
+#include <string.h>
 #include <time.h>
 #include "header.h"
 
@@ -13,8 +14,15 @@ int t1 = 0;
 int t2 = 0;
 int t3 = 0;
 int genCount =0;
+FILE* fp;
 int main()
 {
+  fp = fopen("dataoutput.csv", "a+");
+  if (!fp) {
+        // Error in file opening
+        printf("Can't open file\n");
+    }
+  fclose(fopen("dataoutput.csv", "w"));
   srand(time(NULL));
   generateWorld();
   pthread_t *thread_handles;
@@ -31,6 +39,6 @@ int main()
   }
   free(thread_handles);
   }
-  storeoutput(susc, inf, empty);
+  fclose(fp);
   return 0;
 }

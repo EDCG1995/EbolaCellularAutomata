@@ -6,7 +6,7 @@
 
 extern int world[Xaxis][Yaxis];
 extern int temp[Xaxis][Yaxis];
-
+extern FILE* fp;
 int susc;
 int inf;
 int empty;
@@ -51,6 +51,9 @@ void generateWorld()
       #endif
     }
   }
+  fprintf(fp, "%d, %d, %d\n", susc, inf, empty);
+  
+  
   #if(DEBUG>o)
   printf("Population: %f \nSusceptible: %d \nInfected: %d \nEmpty:%d\n", populated, susc, inf, empty);
   #endif
