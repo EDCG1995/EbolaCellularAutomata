@@ -18,13 +18,15 @@ FILE *fp;
 pthread_mutex_t test_mutex;
 
 int main() {
+    printf("Program is running %d generations...\n", GENS);
     fp = fopen("dataoutput.csv", "a+");
     if (!fp) {
         // Error in file opening
         printf("Can't open file\n");
     }
-    printf("Program is running %d generations...\n", GENS);
+    fprintf(fp, "Sus,inf,dead,rem,empty\n");
     fclose(fopen("dataoutput.csv", "w"));
+
     srand(time(NULL));
     generateWorld();
     pthread_t *thread_handles;

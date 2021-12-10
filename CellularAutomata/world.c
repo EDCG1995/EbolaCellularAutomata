@@ -20,18 +20,18 @@ void generateWorld() {
     int dead = 0;
 
     //gets the percetage of populated cells ex. 0.95 (95%)
-    float a = 0.95 * (Xaxis * Yaxis);
-    float populated = a / (Xaxis * Yaxis);
     for (row = 0; row < Xaxis; row++) {
         for (col = 0; col < Yaxis; col++) {
             random = (float) rand() / (float) RAND_MAX;
+
             //cell will be a susceptible person
-            if (random <= populated && random >= ZERO) {
+            if (random <= POPULATED && random >= ZERO) {
                 world[row][col] = SUSC;
                 susc += 1;
             }
                 //cell will be an infected person
-            else if (random <= populated && random <= ZERO) {
+            else if (random < ZERO && random <= POPULATED)  {
+                printf("%f\t", random);
                 world[row][col] = INF;
                 inf += 1;
             }
@@ -42,5 +42,5 @@ void generateWorld() {
             }
         }
     }
-    //fprintf(fp, "%d, %d, %d, %d, %d\n", susc, inf,dead,rem ,empty);
+    fprintf(fp, "%d, %d, %d, %d, %d\n", susc, inf,dead,rem ,empty);
 }
