@@ -19,8 +19,8 @@ extern int t1;
 extern int t2;
 extern int t3;
 extern int genCount;
-void *test(void *rank)
-{
+
+void *test(void *rank) {
 
     /*
     thread 0 will check 0 to 249
@@ -29,78 +29,69 @@ void *test(void *rank)
     thread 3 will check 750 999
     
     */
-    long r = (long)rank;
+    long r = (long) rank;
     long check = r * piece;
-    if (check == 0)
-    {
+    if (check == 0) {
 
         checkNeighbourhood(0, 249, r);
     }
-    if (check == 250)
-    {
+    if (check == 250) {
 
         checkNeighbourhood(250, 499, r);
     }
-    if (check == 500)
-    {
+    if (check == 500) {
 
         checkNeighbourhood(500, 749, r);
     }
-    if (check == 750)
-    {
+    if (check == 750) {
 
         checkNeighbourhood(750, 999, r);
     }
 }
 
-float setInfectionRate(int infectedNeighbours, int deceased)
-{ //infection rate starts at 51.5% and increments to 90%
+float setInfectionRate(int infectedNeighbours, int deceased) { //infection rate starts at 51.5% and increments to 90%
 
     float infectionRate = 0.;
 
-    switch (infectedNeighbours)
-    {
-    case 1:
-        infectionRate = 0.515;
-        break;
-    case 2:
-        infectionRate = 0.57;
-        break;
-    case 3:
-        infectionRate = 0.625;
-        break;
-    case 4:
-        infectionRate = 0.68;
-        break;
-    case 5:
-        infectionRate = 0.735;
-        break;
-    case 6:
-        infectionRate = 0.79;
-        break;
-    case 7:
-        infectionRate = 0.845;
-        break;
-    case 8:
-        infectionRate = 0.9;
-        break;
-    default:
-        infectionRate = 0.0;
+    switch (infectedNeighbours) {
+        case 1:
+            infectionRate = 0.515;
+            break;
+        case 2:
+            infectionRate = 0.57;
+            break;
+        case 3:
+            infectionRate = 0.625;
+            break;
+        case 4:
+            infectionRate = 0.68;
+            break;
+        case 5:
+            infectionRate = 0.735;
+            break;
+        case 6:
+            infectionRate = 0.79;
+            break;
+        case 7:
+            infectionRate = 0.845;
+            break;
+        case 8:
+            infectionRate = 0.9;
+            break;
+        default:
+            infectionRate = 0.0;
     }
     infectionRate += (deceased * 0.05); //the infection rate increases 5% for every infected neighbour
     //printf("inf neigh= %d, dec= %d, infRate = %f \n", infectedNeighbours, deceased, infectionRate);
     //Return infectionRate;
 }
 
-void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r)
-{
+void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r) {
 
     int row = lowerBoundary;
     int col;
-    for (row; row <= upperBoundary; row++)
-    {
-        for (col = 0; col < Yaxis; col++)
-        {
+    for (row; row <= upperBoundary; row++) {
+        for (col = 0; col < Yaxis; col++) {
 
             int infNeigh = 0;
             int dead = 0;
@@ -149,73 +140,64 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r)
                 dead += 1;
 
             float infRate = setInfectionRate(infNeigh, dead);
-            float random = (float)rand() / (float)RAND_MAX;
-            if (random < infRate && random >= 0.3)
-            {
+            float random = (float) rand() / (float) RAND_MAX;
+            if (random < infRate && random >= 0.3) {
                 temp[row][col] = INF;
             }
-            if (random < 0.3){
+            if (random < 0.3) {
                 temp[row][col] = DEAD;
             }
         }
     }
     printf("thread %ld finished \n", r);
 
-    if (r == 0)
-    {
+    if (r == 0) {
         t0 = 1;
-        if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
-        {
+        if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1) {
             updateWorld();
-            printf("thread %ld updated the table", r);
+            printf("thread %ld updated the table\n", r);
         }
     }
 
-    if (r == 1)
-    {
+    if (r == 1) {
         t1 = 1;
-        if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
-        {
+        if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1) {
             updateWorld();
-            printf("thread %ld updated the table", r);
+            printf("thread %ld updated the table\n", r);
         }
     }
 
-    if (r == 2)
-    {
+    if (r == 2) {
         t2 = 1;
-        if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
-        {
+        if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1) {
             updateWorld();
-            printf("thread %ld updated the table", r);
+            printf("thread %ld updated the table\n", r);
         }
     }
 
-    if (r == 3)
-    {
+    if (r == 3) {
         t3 = 1;
-        if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
-        {
+        if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1) {
             updateWorld();
 
-            printf("thread %ld updated the table", r);
+            printf("thread %ld updated the table\n", r);
         }
     }
 }
-void updateWorld()
-{
-    for (int i = 0; i < Xaxis; i++)
-    {
-        for (int j = 0; j < Yaxis; j++)
-        {
+
+void updateWorld() {
+    for (int i = 0; i < Xaxis; i++) {
+        for (int j = 0; j < Yaxis; j++) {
+#if (DEBUG > 0)
             printf("before: %d, ", world[i][j]);
             p = &temp[i][j];
             printf("after: %d, \n", world[i][j]);
+#endif
         }
     }
     t0 = 0;
     t1 = 0;
     t2 = 0;
     t3 = 0;
-    
+
 }

@@ -1,13 +1,10 @@
 #include <stdio.h>
-#include <string.h>
-
 
 // Driver Code
-void storeoutput(int susc, int inf, int empty)
-{
+void storeoutput(int susc, int inf, int empty) {
     // Substitute the file_path string
     // with full path of CSV file
-    FILE* fp = fopen("dataoutput.csv", "a+");
+    FILE *fp = fopen("dataoutput.csv", "a+");
 
     if (!fp) {
         // Error in file opening
