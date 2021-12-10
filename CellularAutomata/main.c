@@ -24,12 +24,14 @@ int main()
     // Error in file opening
     printf("Can't open file\n");
   }
+  printf("Program is running %d generations...\n", GENS);
   fclose(fopen("dataoutput.csv", "w"));
   srand(time(NULL));
   generateWorld();
   pthread_t *thread_handles;
   long thread;
   pthread_mutex_init(&test_mutex, NULL);
+  
   for (int i = 0; i < GENS; i++)
   {
     thread_handles = malloc(THREADS * sizeof(pthread_t));
@@ -48,7 +50,8 @@ int main()
   int s = 0;
   int in = 0;
   int e = 0;
-  int d = 0; 
+  int d = 0;
+  int rem = 0; 
   for (int i = 0; i < Xaxis; i++)
   {
     for (int j = 0; j < Yaxis; j++)
@@ -67,15 +70,15 @@ int main()
       case DEAD:
         d++;
         break;
-      case REC:
+      case REM:
+      rem++;
         break;
       }
     }
   }
-  fprintf(fp, "%d, %d, %d, %d\n", s, in, d ,e);
+  fprintf(fp, "%d, %d, %d, %d, %d\n", s, in, d, rem, e);
   }
-  
-
   fclose(fp);
+  printf("Program finished! Check .cvs output.");
   return 0;
 }

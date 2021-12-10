@@ -24,8 +24,9 @@ extern int genCount;
 extern pthread_mutex_t test_mutex;
 int sus = 0;
 int infec = 0;
-int empt = 0;
+int rem = 0;
 int de = 0;
+int emptt = 0;
 
 void *test(void *rank)
 {
@@ -40,25 +41,13 @@ void *test(void *rank)
     long r = (long)rank;
     long check = r * piece;
     if (check == 0)
-    {
-
         checkNeighbourhood(0, 249, r);
-    }
     if (check == 250)
-    {
-
         checkNeighbourhood(250, 499, r);
-    }
     if (check == 500)
-    {
-
         checkNeighbourhood(500, 749, r);
-    }
     if (check == 750)
-    {
-
         checkNeighbourhood(750, 999, r);
-    }
 }
 
 float setInfectionRate(int infectedNeighbours, int deceased)
@@ -206,9 +195,9 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r)
             case DEAD:
                 if (random <= 0.5)
                 {
-                    temp[row][col] = EMPTY;
+                    temp[row][col] = REM;
                     pthread_mutex_lock(&test_mutex);
-                    empt++;
+                    rem++;
                     pthread_mutex_unlock(&test_mutex);
                 }
                 else
@@ -222,51 +211,37 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r)
             case EMPTY: // empty
                 temp[row][col] = EMPTY;
                 pthread_mutex_lock(&test_mutex);
-                empt++;
+                emptt++;
                 pthread_mutex_unlock(&test_mutex);
                 break;
             }
         }
-        printf("thread %ld finished \n", r);
 
         if (r == 0)
         {
             t0 = 1;
             if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
-            {
                 updateWorld();
-                printf("thread %ld updated the table\n", r);
-            }
         }
 
         if (r == 1)
         {
             t1 = 1;
             if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
-            {
                 updateWorld();
-                printf("thread %ld updated the table\n", r);
-            }
         }
-
         if (r == 2)
         {
             t2 = 1;
             if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
-            {
-                updateWorld();
-                printf("thread %ld updated the table\n", r);
-            }
-        }
 
+                updateWorld();
+        }
         if (r == 3)
         {
             t3 = 1;
             if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
-            {
                 updateWorld();
-                printf("thread %ld updated the table\n", r);
-            }
         }
     }
 }
@@ -275,16 +250,14 @@ void updateWorld()
     for (int i = 0; i < Xaxis; i++)
     {
         for (int j = 0; j < Yaxis; j++)
-        {
             world[i][j] = temp[i][j];
-        }
     }
-    //fprintf(fp, "%d, %d, %d, %d\n", sus, infec, de, empt);
     t0 = 0;
     t1 = 0;
     t2 = 0;
     t3 = 0;
     sus = 0;
     infec = 0;
-    empt = 0;
+    rem = 0;
+    emptt = 0;
 }

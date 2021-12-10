@@ -1,1 +1,1 @@
-{"buildTargets":["dataoutput.o","main","make","neighbourhood.o","world.o"],"launchTargets":[],"customConfigurationProvider":{"workspaceBrowse":{"browsePath":[],"compilerArgs":[]},"fileIndex":[]}}
+{"buildTargets":["Makefile","dataoutput.o","main","make","neighbourhood.o","world.o"],"launchTargets":[],"customConfigurationProvider":{"workspaceBrowse":{"browsePath":[],"compilerArgs":[]},"fileIndex":[]}}

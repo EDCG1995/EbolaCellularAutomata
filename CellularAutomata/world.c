@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <pthread.h>
 
-#define DEBUG 0
+
 
 #include "header.h"
 
@@ -18,6 +18,8 @@ void generateWorld()
     int susc = 0;
     int inf = 0;
     int empty = 0;
+    int rem = 0;
+    int dead = 0;
 
     //gets the percetage of populated cells ex. 0.95 (95%)
     float a = 0.95 * (Xaxis * Yaxis);
@@ -45,10 +47,7 @@ void generateWorld()
                 world[row][col] = EMPTY;
                 empty += 1;
             }
-            
-
         }
     }
-    fprintf(fp, "%d, %d, %d\n", susc, inf, empty);
-
+    //fprintf(fp, "%d, %d, %d, %d, %d\n", susc, inf,dead,rem ,empty);
 }

@@ -5,6 +5,7 @@
 #define ZERO 0.05
 #define THREADS 4
 #define GENS 50
+#define DEBUG 0
 
 void generateWorld();
 
@@ -30,7 +31,7 @@ enum cellStatus {
     SUSC, /*is 0*/
     INF,  /*is 1*/
     DEAD, /*is 2*/
-    REC,  /*is 3*/
+    REM,  /*is 3*/
     EMPTY /*is 4*/
 };
 
