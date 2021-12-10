@@ -8,12 +8,12 @@
  */
 void Print_matrix(char title[] /* in */, double A[] /* in */, int m /* in */,
                   int n /* in */) {
-  int i, j;
+    int i, j;
 
-  printf("\nThe matrix %s\n", title);
-  for (i = 0; i < m; i++) {
-    for (j = 0; j < n; j++)
-      printf("%f ", A[i * n + j]);
-    printf("\n");
-  }
+    printf("\nThe matrix %s\n", title);
+    for (i = 0; i < m; i++) {
+        for (j = 0; j < n; j++)
+            printf("%f ", A[i * n + j]);
+        printf("\n");
+    }
 } /* Print_matrix */

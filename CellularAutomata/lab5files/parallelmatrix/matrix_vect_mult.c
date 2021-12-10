@@ -25,35 +25,35 @@
 
 /*-------------------------------------------------------------------*/
 int main(void) {
-  double *A = NULL;
-  double *x = NULL;
-  double *y = NULL;
-  int m, n;
+    double *A = NULL;
+    double *x = NULL;
+    double *y = NULL;
+    int m, n;
 
-  Get_dims(&m, &n);
-  A = malloc(m * n * sizeof(double));
-  x = malloc(n * sizeof(double));
-  y = malloc(m * sizeof(double));
-  if (A == NULL || x == NULL || y == NULL) {
-    fprintf(stderr, "Can't allocate storage\n");
-    exit(-1);
-  }
-  Read_matrix("A", A, m, n);
+    Get_dims(&m, &n);
+    A = malloc(m * n * sizeof(double));
+    x = malloc(n * sizeof(double));
+    y = malloc(m * sizeof(double));
+    if (A == NULL || x == NULL || y == NULL) {
+        fprintf(stderr, "Can't allocate storage\n");
+        exit(-1);
+    }
+    Read_matrix("A", A, m, n);
 #ifdef DEBUG
-  Print_matrix("A", A, m, n);
+    Print_matrix("A", A, m, n);
 #endif
-  Read_vector("x", x, n);
+    Read_vector("x", x, n);
 #ifdef DEBUG
-  Print_vector("x", x, n);
+    Print_vector("x", x, n);
 #endif
 
-  Mat_vect_mult(A, x, y, m, n);
+    Mat_vect_mult(A, x, y, m, n);
 
-  Print_vector("y", y, m);
+    Print_vector("y", y, m);
 
-  free(A);
-  free(x);
-  free(y);
-  return 0;
+    free(A);
+    free(x);
+    free(y);
+    return 0;
 } /* main */
 

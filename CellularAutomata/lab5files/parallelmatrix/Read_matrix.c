@@ -12,10 +12,10 @@
 
 void Read_matrix(char prompt[] /* in  */, double A[] /* out */, int m /* in  */,
                  int n /* in  */) {
-  int i, j;
+    int i, j;
 
-  printf("Enter the matrix %s\n", prompt);
-  for (i = 0; i < m; i++)
-    for (j = 0; j < n; j++)
-      scanf("%lf", &A[i * n + j]);
+    printf("Enter the matrix %s\n", prompt);
+    for (i = 0; i < m; i++)
+        for (j = 0; j < n; j++)
+            scanf("%lf", &A[i * n + j]);
 } /* Read_matrix */

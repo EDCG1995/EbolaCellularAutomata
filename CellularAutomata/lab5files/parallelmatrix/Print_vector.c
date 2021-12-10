@@ -7,10 +7,10 @@
  *             m:      the number of elements in the vector
  */
 void Print_vector(char title[] /* in */, double y[] /* in */, int m /* in */) {
-  int i;
+    int i;
 
-  printf("\nThe vector %s\n", title);
-  for (i = 0; i < m; i++)
-    printf("%f ", y[i]);
-  printf("\n");
+    printf("\nThe vector %s\n", title);
+    for (i = 0; i < m; i++)
+        printf("%f ", y[i]);
+    printf("\n");
 } /* Print_vector */
