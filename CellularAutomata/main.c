@@ -33,7 +33,7 @@ int main() {
     long thread;
     pthread_mutex_init(&test_mutex, NULL);
 
-    for (int i = 0; i < GENS; i++) {
+    for (int t = 0; t < GENS; t++) {
         thread_handles = malloc(THREADS * sizeof(pthread_t));
         for (thread = 0; thread < THREADS; thread++) {
             pthread_create(&thread_handles[thread], NULL, test, (void *) thread);
@@ -52,6 +52,7 @@ int main() {
         int rem = 0;
         for (int i = 0; i < Xaxis; i++) {
             for (int j = 0; j < Yaxis; j++) {
+
                 switch (world[i][j]) {
 
                     case SUSC:

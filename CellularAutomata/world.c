@@ -31,7 +31,6 @@ void generateWorld() {
             }
                 //cell will be an infected person
             else if (random < ZERO && random <= POPULATED)  {
-//                printf("%f\t", random);
                 world[row][col] = INF;
                 inf += 1;
             }
