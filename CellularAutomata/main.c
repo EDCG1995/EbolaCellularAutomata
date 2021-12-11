@@ -59,7 +59,8 @@ int main() {
         int rem = 0;
         for (int i = 0; i < Xaxis; i++) {
             for (int j = 0; j < Yaxis; j++) {
-                fprintf(fa, "%d,", world[i][j]);
+                // Debug statement
+                // fprintf(fa, "%d,", world[i][j]);
                 switch (world[i][j]) {
 
                     case SUSC:

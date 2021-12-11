@@ -143,6 +143,8 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r) {
 
             switch (world[row][col]) {
                 case SUSC:
+                    // Debug
+                    //printf("%d\t", world[row][col]);
                     if (random < infRate) { //if susc becomes infected
                         temp[row][col] = INF;
                         pthread_mutex_lock(&test_mutex);
@@ -157,6 +159,8 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r) {
                     break;
 
                 case INF:
+                    // Debug
+                    //printf("%d\t", world[row][col]);
                     if (random < 0.3) { //30% chance of dying
                         temp[row][col] = DEAD;
                         pthread_mutex_lock(&test_mutex);
@@ -176,6 +180,8 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r) {
                     break;
 
                 case DEAD:
+                    // Debug
+                    //printf("%d\t", world[row][col]);
                     if (random <= 0.5) {
                         temp[row][col] = REM;
                         pthread_mutex_lock(&test_mutex);
@@ -190,6 +196,8 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r) {
                     break;
 
                 case EMPTY: // empty
+                    // Debug
+                    //printf("%d\t", world[row][col]);
                     temp[row][col] = EMPTY;
                     pthread_mutex_lock(&test_mutex);
                     emptt++;

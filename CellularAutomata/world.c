@@ -36,6 +36,8 @@ void generateWorld() {
                 world[row][col] = EMPTY;
                 empty += 1;
             }
+            //debug
+            //printf("%d\t", world[row][col]);
         }
     }
     for (int i = 0; i < Xaxis; i++) {
