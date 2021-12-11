@@ -15,17 +15,25 @@ int t2 = 0;
 int t3 = 0;
 int genCount = 0;
 FILE *fp;
+FILE *fa;
 pthread_mutex_t test_mutex;
 
 int main() {
     printf("Program is running %d generations...\n", GENS);
     fp = fopen("dataoutput.csv", "a+");
+    fa = fopen("dataoutputanimation.csv", "a+");
     if (!fp) {
         // Error in file opening
         printf("Can't open file\n");
     }
+    if(!fa){
+        // Error in file opening
+        printf("Can't open file\n");
+    }
+
     fprintf(fp, "Sus,inf,dead,rem,empty\n");
     fclose(fopen("dataoutput.csv", "w"));
+    fclose(fopen("dataoutputanimation.txt", "w"));
 
     srand(time(NULL));
     generateWorld();
@@ -52,7 +60,7 @@ int main() {
         int rem = 0;
         for (int i = 0; i < Xaxis; i++) {
             for (int j = 0; j < Yaxis; j++) {
-
+                fprintf(fa, "%d,", world[i][j]);
                 switch (world[i][j]) {
 
                     case SUSC:
@@ -72,10 +80,16 @@ int main() {
                         break;
                 }
             }
+            fprintf(fa, "\n");
         }
+        fprintf(fa, "\n");
         fprintf(fp, "%d, %d, %d, %d, %d\n", s, in, d, rem, e);
+        float progress_bar = t*100.0/GENS;
+        printf("\rProgress = %.2f %%", progress_bar);
     }
     fclose(fp);
-    printf("Program finished! Check .cvs output.");
+    fclose(fa);
+    printf("\rProgress =   100 %%");
+    printf("\nProgram finished! Check .cvs output.");
     return 0;
 }
