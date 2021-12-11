@@ -1,21 +1,14 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <pthread.h>
 #include <string.h>
 #include <time.h>
 #include "header.h"
 
 int world[Xaxis][Yaxis] = {-1};
 int temp[Xaxis][Yaxis];
-int piece = Yaxis / THREADS;
-int t0 = 0;
-int t1 = 0;
-int t2 = 0;
-int t3 = 0;
 int genCount = 0;
 FILE *fp;
 FILE *fa;
-pthread_mutex_t test_mutex;
 
 int main() {
     printf("Program is running %d generations...\n", GENS);
@@ -35,22 +28,10 @@ int main() {
     fclose(fopen("dataoutputanimation.csv", "w"));
 
     srand(time(NULL));
+
     generateWorld();
-    pthread_t *thread_handles;
-    long thread;
-    pthread_mutex_init(&test_mutex, NULL);
 
     for (int t = 0; t < GENS; t++) {
-        thread_handles = malloc(THREADS * sizeof(pthread_t));
-        for (thread = 0; thread < THREADS; thread++) {
-            pthread_create(&thread_handles[thread], NULL, test, (void *) thread);
-        }
-        for (thread = 0; thread < THREADS; thread++) {
-            pthread_join(thread_handles[thread], NULL);
-        }
-        free(thread_handles);
-
-        pthread_mutex_destroy(&test_mutex);
 
         int s = 0;
         int in = 0;

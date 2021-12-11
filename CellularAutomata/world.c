@@ -36,6 +36,8 @@ void generateWorld() {
                 world[row][col] = EMPTY;
                 empty += 1;
             }
+            // Debug
+            //printf("cell [%d][%d] is : %d\n", row, col, world[row][col]);
         }
     }
     for (int i = 0; i < Xaxis; i++) {
