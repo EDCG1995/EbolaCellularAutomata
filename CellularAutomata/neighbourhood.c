@@ -107,6 +107,8 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r) {
 
             switch (world[row][col]) {
                 case SUSC:
+                    //debug
+                    //printf("%d\t", world[row][col]);
                     if (random < infRate) { //if susc becomes infected
                         temp[row][col] = INF;
                         infec++;
@@ -117,6 +119,8 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r) {
                     break;
 
                 case INF:
+                    //debug
+                    //printf("%d\t", world[row][col]);
                     if (random < 0.3) { //30% chance of dying
                         temp[row][col] = DEAD;
                         de++;
@@ -130,6 +134,8 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r) {
                     break;
 
                 case DEAD:
+                    //debug
+                    //printf("%d\t", world[row][col]);
                     if (random <= 0.5) {
                         temp[row][col] = REM;
                         rem++;
@@ -140,6 +146,8 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r) {
                     break;
 
                 case EMPTY: // empty
+                    //debug
+                    //printf("%d\t", world[row][col]);
                     temp[row][col] = EMPTY;
                     emptt++;
                     break;
