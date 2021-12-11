@@ -1,8 +1,5 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <pthread.h>
-
-
 #include "header.h"
 
 extern int world[Xaxis][Yaxis];
@@ -30,7 +27,7 @@ void generateWorld() {
                 susc += 1;
             }
                 //cell will be an infected person
-            else if (random < ZERO && random <= POPULATED)  {
+            else if (random < ZERO && random <= POPULATED) {
                 world[row][col] = INF;
                 inf += 1;
             }
@@ -46,5 +43,5 @@ void generateWorld() {
             temp[i][j] = world[i][j];
         }
     }
-    fprintf(fp, "%d, %d, %d, %d, %d\n", susc, inf,dead,rem ,empty);
+    fprintf(fp, "%d, %d, %d, %d, %d\n", susc, inf, dead, rem, empty);
 }

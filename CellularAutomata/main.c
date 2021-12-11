@@ -7,7 +7,6 @@
 
 int world[Xaxis][Yaxis] = {-1};
 int temp[Xaxis][Yaxis];
-//int (*p)[Xaxis][Yaxis];
 int piece = Yaxis / THREADS;
 int t0 = 0;
 int t1 = 0;
@@ -26,14 +25,14 @@ int main() {
         // Error in file opening
         printf("Can't open file\n");
     }
-    if(!fa){
+    if (!fa) {
         // Error in file opening
         printf("Can't open file\n");
     }
 
     fprintf(fp, "Sus,inf,dead,rem,empty\n");
     fclose(fopen("dataoutput.csv", "w"));
-    fclose(fopen("dataoutputanimation.txt", "w"));
+    fclose(fopen("dataoutputanimation.csv", "w"));
 
     srand(time(NULL));
     generateWorld();
@@ -84,12 +83,12 @@ int main() {
         }
         fprintf(fa, "\n");
         fprintf(fp, "%d, %d, %d, %d, %d\n", s, in, d, rem, e);
-        float progress_bar = t*100.0/GENS;
+        float progress_bar = t * 100.0 / GENS;
         printf("\rProgress = %.2f %%", progress_bar);
     }
     fclose(fp);
     fclose(fa);
     printf("\rProgress =   100 %%");
-    printf("\nProgram finished! Check .cvs output.");
+    printf("\nProgram finished! Check .cvs output.\n");
     return 0;
 }
