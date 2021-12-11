@@ -33,7 +33,7 @@ int main() {
 
     fprintf(fp, "Sus,inf,dead,rem,empty\n");
     fclose(fopen("dataoutput.csv", "w"));
-    fclose(fopen("dataoutputanimation.txt", "w"));
+    fclose(fopen("dataoutputanimation.csv", "w"));
 
     srand(time(NULL));
     generateWorld();
@@ -60,9 +60,8 @@ int main() {
         int rem = 0;
         for (int i = 0; i < Xaxis; i++) {
             for (int j = 0; j < Yaxis; j++) {
-                fprintf(fa, "%d,", world[i][j]);
+                //fprintf(fa, "%d,", world[i][j]);
                 switch (world[i][j]) {
-
                     case SUSC:
                         s++;
                         break;
