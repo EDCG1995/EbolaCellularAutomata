@@ -9,10 +9,10 @@ data['pop'] = np.vectorize(sum, signature="(m)->()")(data[data.columns])
 fig = plt.figure(figsize=[15,8])
 ax = fig.add_subplot(111, axisbelow=True)
 
-ax.plot(data.index, data.Sus, 'r', lw=2, label='Alive & Uninfected')
+ax.plot(data.index, data.Sus, 'r', lw=2, label='Susceptible')
 ax.plot(data.index, data['inf'], 'g', lw=2, label='Infected')
-ax.plot(data.index, data.rem, 'b', lw=2, label='Dead & Buried')
-ax.plot(data.index, data.dead, lw=2, label='Dead & Infectious')
+ax.plot(data.index, data.rem, 'b', lw=2, label='Removed')
+# ax.plot(data.index, data.dead, lw=2, label='Dead & Infectious')S
 # ax.plot(data.index, data['empty'], lw=2, label='Empty')
 
 ax.set_xlabel('Iterations', fontdict={'fontsize': 14})

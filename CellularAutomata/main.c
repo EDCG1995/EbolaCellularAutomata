@@ -82,8 +82,12 @@ int main() {
             }
             fprintf(fa, "\n");
         }
+
         fprintf(fa, "\n");
+        // Prints susceptible, infected, dead, removed and empty to CSV file for data storage and SIR visualization
         fprintf(fp, "%d, %d, %d, %d, %d\n", s, in, d, rem, e);
+
+        // Progress bar to show completion %
         float progress_bar = t * 100.0 / GENS;
         printf("\rProgress = %.2f %%", progress_bar);
     }
