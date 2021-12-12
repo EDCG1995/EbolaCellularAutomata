@@ -45,5 +45,5 @@ void generateWorld() {
             temp[i][j] = world[i][j];
         }
     }
-    //fprintf(fp, "%d, %d, %d, %d, %d\n", susc, inf, dead, rem, empty);
+    fprintf(fp, "%d, %d, %d, %d, %d\n", susc, inf, dead, rem, empty);
 }

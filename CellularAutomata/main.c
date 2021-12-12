@@ -32,7 +32,7 @@ int main() {
     generateWorld();
 
     for (int t = 0; t < GENS; t++) {
-
+        checkNeighbourhood(Xaxis, Yaxis);
         int s = 0;
         int in = 0;
         int e = 0;
@@ -41,7 +41,7 @@ int main() {
         for (int i = 0; i < Xaxis; i++) {
             for (int j = 0; j < Yaxis; j++) {
                 // Prints out the cells for the cellular automata table
-                // fprintf(fa, "%d,", world[i][j]);
+                fprintf(fa, "%d,", world[i][j]);
                 switch (world[i][j]) {
 
                     case SUSC:
