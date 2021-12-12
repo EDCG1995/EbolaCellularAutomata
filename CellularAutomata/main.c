@@ -4,6 +4,7 @@
 #include <time.h>
 #include "header.h"
 
+int* worldptr;
 int world[Xaxis][Yaxis] = {-1};
 int temp[Xaxis][Yaxis];
 int genCount = 0;
@@ -32,12 +33,15 @@ int main() {
     generateWorld();
 
     for (int t = 0; t < GENS; t++) {
+
         checkNeighbourhood(Xaxis, Yaxis);
+
         int s = 0;
         int in = 0;
         int e = 0;
         int d = 0;
         int rem = 0;
+
         for (int i = 0; i < Xaxis; i++) {
             for (int j = 0; j < Yaxis; j++) {
                 // Prints out the cells for the cellular automata table
@@ -72,5 +76,6 @@ int main() {
     fclose(fa);
     printf("\rProgress =   100 %%");
     printf("\nProgram finished! Check .cvs output.\n");
+
     return 0;
 }

@@ -4,6 +4,7 @@
 
 extern int world[Xaxis][Yaxis];
 extern int temp[Xaxis][Yaxis];
+extern int* worldptr;
 extern FILE *fp;
 
 void generateWorld() {
@@ -16,21 +17,26 @@ void generateWorld() {
     int rem = 0;
     int dead = 0;
 
-    //gets the percetage of populated cells ex. 0.95 (95%)
+    //gets the percentage of populated cells ex. 0.95 (95%)
     for (row = 0; row < Xaxis; row++) {
         for (col = 0; col < Yaxis; col++) {
             random = (float) rand() / (float) RAND_MAX;
+
+            worldptr = malloc((Xaxis * Yaxis) * sizeof(int));
+            //printf("%d\t", world[row][col]);
 
             //cell will be a susceptible person
             if (random <= POPULATED && random >= ZERO) {
                 world[row][col] = SUSC;
                 susc += 1;
             }
+            //printf("%d\t", world[row][col]);
                 //cell will be an infected person
             else if (random < ZERO && random <= POPULATED) {
                 world[row][col] = INF;
                 inf += 1;
             }
+            //printf("%d\t", world[row][col]);
                 //cell will be empty
             else {
                 world[row][col] = EMPTY;
@@ -46,4 +52,6 @@ void generateWorld() {
         }
     }
     fprintf(fp, "%d, %d, %d, %d, %d\n", susc, inf, dead, rem, empty);
+
+    free(worldptr);
 }
