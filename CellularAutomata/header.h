@@ -5,7 +5,9 @@
 #define ZERO 0.001
 #define THREADS 4
 #define GENS 75
-#define DEBUG 0
+#define DEBUG 0 
+#define DEATH 0.30
+#define IMMUNITY 0.7
 #define POPULATED 0.95
 
 void generateWorld();
@@ -27,6 +29,12 @@ extern int t0;
 extern int t1;
 extern int t2;
 extern int t3;
+extern int sus;
+extern int infec;
+extern int rem;
+extern int de;
+extern int emptt;
+
 
 enum cellStatus {
     EMPTY, /*is 0*/
@@ -34,6 +42,7 @@ enum cellStatus {
     DEAD, /*is 2*/
     REM,  /*is 3*/
     SUSC, /*is 4*/
+    REC
 };
 
 #endif

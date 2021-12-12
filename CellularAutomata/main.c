@@ -17,20 +17,23 @@ FILE *fp;
 FILE *fa;
 pthread_mutex_t test_mutex;
 
-int main() {
+int main()
+{
     printf("Program is running %d generations...\n", GENS);
     fp = fopen("dataoutput.csv", "a+");
     fa = fopen("dataoutputanimation.csv", "a+");
-    if (!fp) {
+    if (!fp)
+    {
         // Error in file opening
         printf("Can't open file\n");
     }
-    if (!fa) {
+    if (!fa)
+    {
         // Error in file opening
         printf("Can't open file\n");
     }
 
-    fprintf(fp, "Sus,inf,dead,rem,empty\n");
+    fprintf(fp, "Sus, Rec, inf, dead, rem, empty\n");
     fclose(fopen("dataoutput.csv", "w"));
     fclose(fopen("dataoutputanimation.csv", "w"));
 
@@ -40,12 +43,15 @@ int main() {
     long thread;
     pthread_mutex_init(&test_mutex, NULL);
 
-    for (int t = 0; t < GENS; t++) {
+    for (int t = 0; t < GENS; t++)
+    {
         thread_handles = malloc(THREADS * sizeof(pthread_t));
-        for (thread = 0; thread < THREADS; thread++) {
-            pthread_create(&thread_handles[thread], NULL, test, (void *) thread);
+        for (thread = 0; thread < THREADS; thread++)
+        {
+            pthread_create(&thread_handles[thread], NULL, test, (void *)thread);
         }
-        for (thread = 0; thread < THREADS; thread++) {
+        for (thread = 0; thread < THREADS; thread++)
+        {
             pthread_join(thread_handles[thread], NULL);
         }
         free(thread_handles);
@@ -57,27 +63,33 @@ int main() {
         int e = 0;
         int d = 0;
         int rem = 0;
-        for (int i = 0; i < Xaxis; i++) {
-            for (int j = 0; j < Yaxis; j++) {
+        int rec = 0;
+        for (int i = 0; i < Xaxis; i++)
+        {
+            for (int j = 0; j < Yaxis; j++)
+            {
                 // Debug statement
                 // fprintf(fa, "%d,", world[i][j]);
-                switch (world[i][j]) {
+                switch (world[i][j])
+                {
 
-                    case SUSC:
-                        s++;
-                        break;
-                    case INF:
-                        in++;
-                        break;
-                    case EMPTY:
-                        e++;
-                        break;
-                    case DEAD:
-                        d++;
-                        break;
-                    case REM:
-                        rem++;
-                        break;
+                case SUSC:
+                    s++;
+                    break;
+                case INF:
+                    in++;
+                    break;
+                case EMPTY:
+                    e++;
+                    break;
+                case DEAD:
+                    d++;
+                    break;
+                case REM:
+                    rem++;
+                    break;
+                case REC:
+                    rec++;
                 }
             }
             fprintf(fa, "\b\n");
@@ -85,7 +97,7 @@ int main() {
 
         fprintf(fa, "\n");
         // Prints susceptible, infected, dead, removed and empty to CSV file for data storage and SIR visualization
-        fprintf(fp, "%d, %d, %d, %d, %d\n", s, in, d, rem, e);
+        fprintf(fp, "%d, %d, %d, %d, %d, %d\n", s, rec, in, d, rem, e);
 
         // Progress bar to show completion %
         float progress_bar = t * 100.0 / GENS;

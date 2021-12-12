@@ -15,6 +15,7 @@ void generateWorld() {
     int empty = 0;
     int rem = 0;
     int dead = 0;
+    int rec = 0;
 
     //gets the percetage of populated cells ex. 0.95 (95%)
     for (row = 0; row < Xaxis; row++) {
@@ -27,7 +28,7 @@ void generateWorld() {
                 susc += 1;
             }
                 //cell will be an infected person
-            else if (random < ZERO && random <= POPULATED) {
+            else if (random < ZERO ) {
                 world[row][col] = INF;
                 inf += 1;
             }
@@ -45,5 +46,5 @@ void generateWorld() {
             temp[i][j] = world[i][j];
         }
     }
-    fprintf(fp, "%d, %d, %d, %d, %d\n", susc, inf, dead, rem, empty);
+    fprintf(fp, "%d, %d, %d, %d, %d, %d\n", susc, rec, inf, dead, rem, empty);
 }
