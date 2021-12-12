@@ -5,6 +5,7 @@
 #include "header.h"
 
 int* worldptr;
+int* neighorptr;
 int world[Xaxis][Yaxis] = {-1};
 int temp[Xaxis][Yaxis];
 int genCount = 0;

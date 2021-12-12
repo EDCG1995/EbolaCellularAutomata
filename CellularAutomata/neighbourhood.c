@@ -6,6 +6,7 @@ extern int world[Xaxis][Yaxis];
 extern int temp[Xaxis][Yaxis];
 extern FILE *fp;
 extern int genCount;
+extern int* neighborptr;
 int sus = 0;
 int infec = 0;
 int rem = 0;
@@ -53,6 +54,7 @@ float setInfectionRate(int infectedNeighbours, int deceased) { //infection rate 
 void checkNeighbourhood(int lowerBoundary, int upperBoundary) {
 
     int col;
+
     for (int row = lowerBoundary; row <= upperBoundary; row++) {
         for (col = 0; col < Yaxis; col++) {
 
