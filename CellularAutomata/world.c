@@ -23,6 +23,7 @@ void generateWorld() {
             random = (float) rand() / (float) RAND_MAX;
 
             worldptr = malloc((Xaxis * Yaxis) * sizeof(int));
+            // Debug
             //printf("%d\t", world[row][col]);
 
             //cell will be a susceptible person
