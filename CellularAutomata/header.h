@@ -3,7 +3,7 @@
 #define Xaxis 1000
 #define Yaxis 1000
 #define ZERO 0.001
-#define GENS 1
+#define GENS 5
 #define DEBUG 0
 #define POPULATED 0.95
 
@@ -19,7 +19,7 @@ void storeoutput(int susc, int inf, int empty);
 
 extern int world[Xaxis][Yaxis];
 extern int temp[Xaxis][Yaxis];
-extern int *worldptr;
+
 
 enum cellStatus {
     EMPTY, /*is 0*/

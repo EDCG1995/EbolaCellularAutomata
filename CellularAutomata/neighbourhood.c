@@ -5,8 +5,8 @@
 extern int world[Xaxis][Yaxis];
 extern int temp[Xaxis][Yaxis];
 extern FILE *fp;
-extern int genCount;
-extern int *neighborptr;
+//extern int genCount;
+//extern int *neighborptr;
 int sus = 0;
 int infec = 0;
 int rem = 0;
@@ -14,9 +14,7 @@ int de = 0;
 int emptt = 0;
 
 float setInfectionRate(int infectedNeighbours, int deceased) { //infection rate starts at 51.5% and increments to 90%
-
     float infectionRate = 0.;
-
     switch (infectedNeighbours) {
         case 1:
             infectionRate = 0.515;
@@ -53,10 +51,8 @@ float setInfectionRate(int infectedNeighbours, int deceased) { //infection rate 
 
 void checkNeighbourhood(int lowerBoundary, int upperBoundary) {
 
-    int col;
-
-    for (int row = lowerBoundary; row <= upperBoundary; row++) {
-        for (col = 0; col < Yaxis; col++) {
+    for (int row = lowerBoundary; row < upperBoundary; row++) {
+        for (int col = 0; col < Yaxis; col++) {
 
             int infNeigh = 0;
             int dead = 0;
@@ -109,50 +105,51 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary) {
 
             switch (world[row][col]) {
                 case SUSC:
-                    //debug
-                    //printf("%d\t", world[row][col]);
+//                    debug
+//                    printf("%d, %d\t", row, col);
                     if (random < infRate) { //if susc becomes infected
                         temp[row][col] = INF;
                         infec++;
-                    } else {
+                    }
+                    else {
                         temp[row][col] = SUSC;
                         sus++;
                     }
                     break;
-
-                case INF:
-                    //debug
-                    //printf("%d\t", world[row][col]);
-                    if (random < 0.3) { //30% chance of dying
-                        temp[row][col] = DEAD;
-                        de++;
-                    } else if (random > 0.8) { //20% chance of recovering and being susc
-                        temp[row][col] = SUSC;
-                        sus++;
-                    } else { //50% chance of remaining infected
-                        temp[row][col] = INF;
-                        infec++;
-                    }
-                    break;
-
-                case DEAD:
-                    //debug
-                    //printf("%d\t", world[row][col]);
-                    if (random <= 0.5) {
-                        temp[row][col] = REM;
-                        rem++;
-                    } else {
-                        temp[row][col] = DEAD;
-                        de++;
-                    }
-                    break;
-
-                case EMPTY: // empty
-                    //debug
-                    //printf("%d\t", world[row][col]);
-                    temp[row][col] = EMPTY;
-                    emptt++;
-                    break;
+//
+//                case INF:
+//                    //debug
+//                    //printf("%d\t", world[row][col]);
+//                    if (random < 0.3) { //30% chance of dying
+//                        temp[row][col] = DEAD;
+//                        de++;
+//                    } else if (random > 0.8) { //20% chance of recovering and being susc
+//                        temp[row][col] = SUSC;
+//                        sus++;
+//                    } else { //50% chance of remaining infected
+//                        temp[row][col] = INF;
+//                        infec++;
+//                    }
+//                    break;
+//
+//                case DEAD:
+//                    //debug
+//                    //printf("%d\t", world[row][col]);
+//                    if (random <= 0.5) {
+//                        temp[row][col] = REM;
+//                        rem++;
+//                    } else {
+//                        temp[row][col] = DEAD;
+//                        de++;
+//                    }
+//                    break;
+//
+//                case EMPTY: // empty
+//                    //debug
+//                    //printf("%d\t", world[row][col]);
+//                    temp[row][col] = EMPTY;
+//                    emptt++;
+//                    break;
             }
         }
     }

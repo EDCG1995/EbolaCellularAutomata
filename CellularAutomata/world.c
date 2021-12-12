@@ -4,8 +4,8 @@
 
 extern int world[Xaxis][Yaxis];
 extern int temp[Xaxis][Yaxis];
-extern int *worldptr;
-extern FILE *fp;
+
+//extern FILE *fp;
 
 void generateWorld() {
     int row;
@@ -22,7 +22,7 @@ void generateWorld() {
         for (col = 0; col < Yaxis; col++) {
             random = (float) rand() / (float) RAND_MAX;
 
-            worldptr = malloc((Xaxis * Yaxis) * sizeof(int));
+
             // Debug
             //printf("%d\t", world[row][col]);
 
@@ -52,8 +52,8 @@ void generateWorld() {
             temp[i][j] = world[i][j];
         }
     }
-    free(worldptr);
 
-    fprintf(fp, "%d, %d, %d, %d, %d\n", susc, inf, dead, rem, empty);
+
+//    fprintf(fp, "%d, %d, %d, %d, %d\n", susc, inf, dead, rem, empty);
 
 }
