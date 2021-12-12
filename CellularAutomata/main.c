@@ -80,7 +80,7 @@ int main() {
                         break;
                 }
             }
-            fprintf(fa, "\n");
+            fprintf(fa, "\b\n");
         }
 
         fprintf(fa, "\n");
