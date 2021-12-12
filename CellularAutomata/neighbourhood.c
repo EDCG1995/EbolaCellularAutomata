@@ -5,8 +5,6 @@
 extern int world[Xaxis][Yaxis];
 extern int temp[Xaxis][Yaxis];
 extern FILE *fp;
-//extern int genCount;
-//extern int *neighborptr;
 int sus = 0;
 int infec = 0;
 int rem = 0;
@@ -116,40 +114,40 @@ void checkNeighbourhood() {
                         sus++;
                     }
                     break;
+
+                case INF:
+                    //debug
+                    //printf("%d\t", world[row][col]);
+                    if (random < 0.3) { //30% chance of dying
+                        temp[row][col] = DEAD;
+                        de++;
+                    } else if (random > 0.8) { //20% chance of recovering and being susc
+                        temp[row][col] = SUSC;
+                        sus++;
+                    } else { //50% chance of remaining infected
+                        temp[row][col] = INF;
+                        infec++;
+                    }
+                    break;
 //
-//                case INF:
-//                    //debug
-//                    //printf("%d\t", world[row][col]);
-//                    if (random < 0.3) { //30% chance of dying
-//                        temp[row][col] = DEAD;
-//                        de++;
-//                    } else if (random > 0.8) { //20% chance of recovering and being susc
-//                        temp[row][col] = SUSC;
-//                        sus++;
-//                    } else { //50% chance of remaining infected
-//                        temp[row][col] = INF;
-//                        infec++;
-//                    }
-//                    break;
-//
-//                case DEAD:
-//                    //debug
-//                    //printf("%d\t", world[row][col]);
-//                    if (random <= 0.5) {
-//                        temp[row][col] = REM;
-//                        rem++;
-//                    } else {
-//                        temp[row][col] = DEAD;
-//                        de++;
-//                    }
-//                    break;
-//
-//                case EMPTY: // empty
-//                    //debug
-//                    //printf("%d\t", world[row][col]);
-//                    temp[row][col] = EMPTY;
-//                    emptt++;
-//                    break;
+                case DEAD:
+                    //debug
+                    //printf("%d\t", world[row][col]);
+                    if (random <= 0.5) {
+                        temp[row][col] = REM;
+                        rem++;
+                    } else {
+                        temp[row][col] = DEAD;
+                        de++;
+                    }
+                    break;
+
+                case EMPTY: // empty
+                    //debug
+                    //printf("%d\t", world[row][col]);
+                    temp[row][col] = EMPTY;
+                    emptt++;
+                    break;
             }
         }
     }

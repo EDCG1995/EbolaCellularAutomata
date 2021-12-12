@@ -3,7 +3,7 @@
 #define Xaxis 1000
 #define Yaxis 1000
 #define ZERO 0.001
-#define GENS 5
+#define GENS 75
 #define DEBUG 0
 #define POPULATED 0.95
 
