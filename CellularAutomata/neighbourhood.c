@@ -1,11 +1,3 @@
-/*
-FILE NOT READY, NEEDS TO BE WORKED ON:
-  ^USE OF THREADS
-  ^LOOP?
-  ^ERROR HANDLING BORDERS
-  ^VALUE-PASSING
-
-*/
 #include <stdlib.h>
 #include <stdio.h>
 #include <pthread.h>
@@ -28,31 +20,28 @@ int de = 0;
 int emptt = 0;
 int rec = 0;
 
+//Threads enter this method and are divided by their rank
 void *test(void *rank)
 {
-
-    /*
-    thread 0 will check 0 to 249
-    thread 1 will check 250 to 499
-    thread 2 will check 500 to 749
-    thread 3 will check 750 999
-    
-    */
     long r = (long)rank;
     long check = r * piece;
+    // thread 0 will check 0 to 249
     if (check == 0)
         checkNeighbourhood(0, 249, r);
+    //thread 1 will check 250 to 499
     if (check == 250)
         checkNeighbourhood(250, 499, r);
+    //thread 2 will check 500 to 749
     if (check == 500)
         checkNeighbourhood(500, 749, r);
+    //thread 3 will check 750 999//thread 3 will check 750 999
     if (check == 750)
         checkNeighbourhood(750, 999, r);
 }
 
+//This method goes through each cell a thread is assigned with
 void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r)
 {
-
     int col;
     for (int row = lowerBoundary; row <= upperBoundary; row++)
     {
@@ -61,7 +50,6 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r)
 
             int infNeigh = 0;
             int dead = 0;
-
             int up = world[row][col + 1];
             int down = world[row][col - 1];
             int left = world[row - 1][col];
@@ -71,39 +59,23 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r)
             int downLeft = world[row - 1][col - 1];
             int downRight = world[row - 1][col + 1];
             //check for infected neighbours
-            if (right == INF)
-                infNeigh += 1;
-            if (left == INF)
-                infNeigh += 1;
-            if (up == INF)
-                infNeigh += 1;
-            if (down == INF)
-                infNeigh += 1;
-            if (upLeft == INF)
-                infNeigh += 1;
-            if (upRight == INF)
-                infNeigh += 1;
-            if (downLeft == INF)
-                infNeigh += 1;
-            if (downRight == INF)
-                infNeigh += 1;
+            if (right == INF) infNeigh += 1;
+            if (left == INF) infNeigh += 1;
+            if (up == INF) infNeigh += 1;
+            if (down == INF) infNeigh += 1;
+            if (upLeft == INF) infNeigh += 1;
+            if (upRight == INF) infNeigh += 1;
+            if (downLeft == INF) infNeigh += 1;
+            if (downRight == INF) infNeigh += 1;
             //check for dead neighbours
-            if (right == DEAD)
-                dead += 1;
-            if (left == DEAD)
-                dead += 1;
-            if (up == DEAD)
-                dead += 1;
-            if (down == DEAD)
-                dead += 1;
-            if (upRight == DEAD)
-                dead += 1;
-            if (upLeft == DEAD)
-                dead += 1;
-            if (downRight == DEAD)
-                dead += 1;
-            if (downLeft == DEAD)
-                dead += 1;
+            if (right == DEAD) dead += 1;
+            if (left == DEAD) dead += 1;
+            if (up == DEAD) dead += 1;
+            if (down == DEAD) dead += 1;
+            if (upRight == DEAD) dead += 1;
+            if (upLeft == DEAD) dead += 1;
+            if (downRight == DEAD) dead += 1;
+            if (downLeft == DEAD) dead += 1;
 
             float infRate = setInfectionRate(infNeigh, dead);
             float random = (float)rand() / (float)RAND_MAX;
