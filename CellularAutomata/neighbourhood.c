@@ -49,9 +49,9 @@ float setInfectionRate(int infectedNeighbours, int deceased) { //infection rate 
     return infectionRate;
 }
 
-void checkNeighbourhood(int lowerBoundary, int upperBoundary) {
+void checkNeighbourhood() {
 
-    for (int row = lowerBoundary; row < upperBoundary; row++) {
+    for (int row = 0; row < Xaxis; row++) {
         for (int col = 0; col < Yaxis; col++) {
 
             int infNeigh = 0;

@@ -13,7 +13,7 @@ void updateWorld();
 
 float setInfectionRate(int infectedNeighbours, int deceased);
 
-void checkNeighbourhood(int row, int col);
+void checkNeighbourhood();
 
 void storeoutput(int susc, int inf, int empty);
 

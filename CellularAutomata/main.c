@@ -33,7 +33,7 @@ int main() {
 
     for (int t = 0; t < GENS; t++) {
 
-        checkNeighbourhood(Xaxis, Yaxis);
+        checkNeighbourhood();
 //
 //        int s = 0;
 //        int in = 0;
