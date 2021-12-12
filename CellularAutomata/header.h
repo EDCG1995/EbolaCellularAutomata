@@ -14,21 +14,14 @@ void generateWorld();
 
 void updateWorld();
 
-void *test(void *rank);
-
 float setInfectionRate(int infectedNeighbours, int deceased);
 
-void checkNeighbourhood(int row, int col, long r);
+void checkNeighbourhood();
 
 void storeoutput(int susc, int inf, int empty);
 
 extern int world[Xaxis][Yaxis];
 extern int temp[Xaxis][Yaxis];
-extern int piece;
-extern int t0;
-extern int t1;
-extern int t2;
-extern int t3;
 extern int sus;
 extern int infec;
 extern int rem;

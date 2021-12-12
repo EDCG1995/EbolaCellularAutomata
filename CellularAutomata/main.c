@@ -1,21 +1,13 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <pthread.h>
 #include <string.h>
 #include <time.h>
 #include "header.h"
 
 int world[Xaxis][Yaxis] = {-1};
-int temp[Xaxis][Yaxis];
-int piece = Yaxis / THREADS;
-int t0 = 0;
-int t1 = 0;
-int t2 = 0;
-int t3 = 0;
-int genCount = 0;
+int temp[Xaxis][Yaxis] = {-1};
 FILE *fp;
 FILE *fa;
-pthread_mutex_t test_mutex;
 
 int main()
 {
@@ -39,24 +31,9 @@ int main()
 
     srand(time(NULL));
     generateWorld();
-    pthread_t *thread_handles;
-    long thread;
-    pthread_mutex_init(&test_mutex, NULL);
-
     for (int t = 0; t < GENS; t++)
     {
-        thread_handles = malloc(THREADS * sizeof(pthread_t));
-        for (thread = 0; thread < THREADS; thread++)
-        {
-            pthread_create(&thread_handles[thread], NULL, test, (void *)thread);
-        }
-        for (thread = 0; thread < THREADS; thread++)
-        {
-            pthread_join(thread_handles[thread], NULL);
-        }
-        free(thread_handles);
-
-        pthread_mutex_destroy(&test_mutex);
+        checkNeighbourhood();
 
         int s = 0;
         int in = 0;
@@ -64,6 +41,7 @@ int main()
         int d = 0;
         int rem = 0;
         int rec = 0;
+
         for (int i = 0; i < Xaxis; i++)
         {
             for (int j = 0; j < Yaxis; j++)
