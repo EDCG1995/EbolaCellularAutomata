@@ -19,7 +19,7 @@ void storeoutput(int susc, int inf, int empty);
 
 extern int world[Xaxis][Yaxis];
 extern int temp[Xaxis][Yaxis];
-extern int* worldptr;
+extern int *worldptr;
 
 enum cellStatus {
     EMPTY, /*is 0*/

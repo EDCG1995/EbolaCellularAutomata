@@ -4,7 +4,7 @@
 
 extern int world[Xaxis][Yaxis];
 extern int temp[Xaxis][Yaxis];
-extern int* worldptr;
+extern int *worldptr;
 extern FILE *fp;
 
 void generateWorld() {
@@ -30,13 +30,13 @@ void generateWorld() {
                 world[row][col] = SUSC;
                 susc += 1;
             }
-            //printf("%d\t", world[row][col]);
+                //printf("%d\t", world[row][col]);
                 //cell will be an infected person
             else if (random < ZERO && random <= POPULATED) {
                 world[row][col] = INF;
                 inf += 1;
             }
-            //printf("%d\t", world[row][col]);
+                //printf("%d\t", world[row][col]);
                 //cell will be empty
             else {
                 world[row][col] = EMPTY;

@@ -6,7 +6,7 @@ extern int world[Xaxis][Yaxis];
 extern int temp[Xaxis][Yaxis];
 extern FILE *fp;
 extern int genCount;
-extern int* neighborptr;
+extern int *neighborptr;
 int sus = 0;
 int infec = 0;
 int rem = 0;
