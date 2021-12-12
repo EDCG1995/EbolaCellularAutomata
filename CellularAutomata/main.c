@@ -14,6 +14,7 @@ int t2 = 0;
 int t3 = 0;
 int genCount = 0;
 FILE *fp;
+FILE *fa;
 pthread_mutex_t test_mutex;
 
 int main() {
