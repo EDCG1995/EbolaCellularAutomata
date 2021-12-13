@@ -1,6 +1,6 @@
 # Makefile for the cellular automata project
 
-main: main.c SerialProgram/world.c world.o SerialProgram/neighbourhood.c neighbourhood.o SerialProgram/infectionRate.c infectionRate.o SerialProgram/header.h
+main: main.c world.c world.o neighbourhood.c neighbourhood.o infectionRate.c infectionRate.o header.h
 	gcc main.c neighbourhood.o world.o infectionRate.o header.h -lpthread -o main
 
 infectionRate.o: infectionRate.c
