@@ -33,7 +33,7 @@ int main()
         printf("Can't open file\n");
     }
 
-    fprintf(fp, "Sus, Rec, inf, dead, rem, empty\n");
+    fprintf(fp, "Sus, inf, dead, rem, empty, Rec\n");
     fclose(fopen("dataoutput.csv", "w"));
     fclose(fopen("dataoutputanimation.csv", "w"));
 
