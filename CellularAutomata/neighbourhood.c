@@ -165,7 +165,7 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r)
             case REC:
                 temp[row][col] = REC;
                 pthread_mutex_lock(&test_mutex);
-                emptt++;
+                rec++;
                 pthread_mutex_unlock(&test_mutex);
                 break;
             }
