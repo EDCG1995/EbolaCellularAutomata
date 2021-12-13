@@ -47,7 +47,6 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r)
     {
         for (col = 0; col < Yaxis; col++)
         {
-
             int infNeigh = 0;
             int dead = 0;
             int up = world[row][col + 1];
@@ -83,17 +82,15 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r)
             switch (world[row][col])
             {
             case SUSC:
-                // Debug
-                //printf("%d\t", world[row][col]);
                 if (random < infRate)
-                { //if susc becomes infected
+                {  //susc becomes infected
                     temp[row][col] = INF;
                     pthread_mutex_lock(&test_mutex);
                     infec++;
                     pthread_mutex_unlock(&test_mutex);
                 }
                 else
-                {
+                { //susc stays susc
                     temp[row][col] = SUSC;
                     pthread_mutex_lock(&test_mutex);
                     sus++;
@@ -102,17 +99,15 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r)
                 break;
 
             case INF:
-                // Debug
-                //printf("%d\t", world[row][col]);
-                if (random < DEATH)
-                { //30% chance of dying
+                if (random < DEATH) 
+                { //inf has 30% chance of dying
                     temp[row][col] = DEAD;
                     pthread_mutex_lock(&test_mutex);
                     de++;
                     pthread_mutex_unlock(&test_mutex);
                 }
                 else if (random > POPULATED - 0.05)
-                { //10% chance of recovering and being susc
+                { //10% chance of recovering and being susc again
                     temp[row][col] = SUSC;
                     pthread_mutex_lock(&test_mutex);
                     sus++;
@@ -135,17 +130,15 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r)
                 break;
 
             case DEAD:
-                // Debug
-                //printf("%d\t", world[row][col]);
                 if (random <= 0.5)
-                {
+                {//50% chance of Dead being Removed
                     temp[row][col] = REM;
                     pthread_mutex_lock(&test_mutex);
                     rem++;
                     pthread_mutex_unlock(&test_mutex);
                 }
                 else
-                {
+                { // 50% chance of Dead not being dealt with
                     temp[row][col] = DEAD;
                     pthread_mutex_lock(&test_mutex);
                     de++;
@@ -154,15 +147,13 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r)
                 break;
 
             case EMPTY: // empty
-                // Debug
-                //printf("%d\t", world[row][col]);
                 temp[row][col] = EMPTY;
                 pthread_mutex_lock(&test_mutex);
                 emptt++;
                 pthread_mutex_unlock(&test_mutex);
                 break;
             
-            case REC:
+            case REC: //Recovered
                 temp[row][col] = REC;
                 pthread_mutex_lock(&test_mutex);
                 rec++;
@@ -170,39 +161,26 @@ void checkNeighbourhood(int lowerBoundary, int upperBoundary, long r)
                 break;
             }
         }
-
+        
         if (r == 0)
         {
             t0 = 1;
-            if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
-            {
-                updateWorld();
-            }
+            if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1) updateWorld();
         }
-
         if (r == 1)
         {
             t1 = 1;
-            if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
-            {
-                updateWorld();
-            }
+            if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1) updateWorld();
         }
         if (r == 2)
         {
             t2 = 1;
-            if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
-            {
-                updateWorld();
-            }
+            if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1) updateWorld();
         }
         if (r == 3)
         {
             t3 = 1;
-            if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1)
-            {
-                updateWorld();
-            }
+            if (t0 == 1 && t1 == 1 && t2 == 1 && t3 == 1) updateWorld();
         }
     }
 }
@@ -211,12 +189,8 @@ void updateWorld()
 {
     for (int i = 0; i < Xaxis; i++)
     {
-        for (int j = 0; j < Yaxis; j++)
-        {
-            world[i][j] = temp[i][j];
-        }
+        for (int j = 0; j < Yaxis; j++) world[i][j] = temp[i][j];
     }
-    //    fprintf(fp, "%d, %d, %d, %d, %d\n", sus, infec, de, rem, emptt);
     t0 = 0;
     t1 = 0;
     t2 = 0;
