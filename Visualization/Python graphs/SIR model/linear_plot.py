@@ -1,36 +1,60 @@
-import pandas as pd
+import matplotlib
+import matplotlib.animation as animation
 import matplotlib.pyplot as plt
 import numpy as np
+from os import listdir
+from os.path import isfile, join
+import os
 
-data = pd.read_csv("/home/kian/Parallel Computing/Cellular Automata/EbolaCellularAutomata/CellularAutomata/dataoutput.csv")
+# changes dir
+os.chdir("E:\python charts\Visualization\Python graphs\SIR visualization")
 
-data['pop'] = np.vectorize(sum, signature="(m)->()")(data[data.columns])
+# opens csv file
+file = "dataoutputanimation.csv"
+data = open(file, "r", encoding='utf-8-sig').read()
 
-fig = plt.figure(figsize=[15,8])
-ax = fig.add_subplot(111, axisbelow=True)
+# splits chunks
+chunk_separator_string = '\n\n'
 
-ax.plot(data.index, data.Sus, 'r', lw=2, label='Susceptible')
-ax.plot(data.index, data['inf'], 'g', lw=2, label='Infected')
-ax.plot(data.index, data.rem, 'b', lw=2, label='Removed')
-# ax.plot(data.index, data.dead, lw=2, label='Dead & Infectious')S
-# ax.plot(data.index, data['empty'], lw=2, label='Empty')
-# ax.plot(data.index, data['inf'], 'g', lw=2, label='Infected') // g is colour, lw = linewidth, label is in legend,
+# adds chunk split to string
+chunks = data.split(chunk_separator_string)
 
-ax.set_xlabel('Iterations', fontdict={'fontsize': 14})
-ax.set_ylabel('Number', fontdict={'fontsize': 14})
+# remove last chunk
+chunks = chunks[:-1]
 
-ax.set_xlim(0,75)
-ax.set_ylim(0,1000000)
+# writes each chunk to gen_xx.csv file
+print("Writing temp files...\n")
+for idx, chunk in enumerate(chunks):
+    f = open("temp/gen_" + str(idx) + ".csv", "w")
+    f.write(chunk)
+    f.close()
 
-# ax.set_xlim(0,max(data.index))
-ax.yaxis.set_tick_params(length=0)
-ax.xaxis.set_tick_params(length=0)
+# get a list of all files in temp
+temp_folder = 'temp'
+file_list = [f for f in listdir(temp_folder) if isfile(join(temp_folder, f))]
 
-ax.grid(visible=True, which='major', ls='-')
-legend = ax.legend(prop={'size': 14})
-legend.get_frame().set_alpha(0.5)
+# generate new list
+SIR_frames = []
 
-plt.title("SIR Simulation Results", fontdict={'fontsize': 18})
+# read in each file from list into numpy array
+for idx, file in enumerate(file_list):
+    iteration = np.genfromtxt("temp\\" + file, delimiter=',')
+    # append array into frames
+    SIR_frames.append(iteration)
 
-plt.show()
-plt.savefig("SIR_graph_1.png")
+                        # Color Sequence -  Empty, Infected, Dead, Buried, Susceptible
+my_cmap = matplotlib.colors.ListedColormap(["Blue", "Green", "Yellow", "Orange", "Red"])
+
+# animate function
+def animate(i):
+    ax.clear()
+    print("Iteration = "+str(i)+"  \r")#, end='\r')
+    ax.contourf(SIR_frames[i], 100, cmap=my_cmap, vmin=0, vmax=4)
+    return fig,
+
+# generate animation and save to file
+print("Generating Animation...\n")
+fig, ax = plt.subplots(figsize=(8, 6))
+ani = animation.FuncAnimation(fig, animate, frames=len(SIR_frames), interval=50)
+# fps is frames per second of gif
+ani.save('SIR_animation.gif', writer='pillow', fps=4)
