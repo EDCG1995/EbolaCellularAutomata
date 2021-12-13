@@ -1,4 +1,4 @@
-
+//method sets the infection rate according to the neighbours of each cell
 float setInfectionRate(int infectedNeighbours, int deceased) { //infection rate starts at 51.5% and increments to 90%
 
     float infectionRate = 0.;
@@ -31,8 +31,6 @@ float setInfectionRate(int infectedNeighbours, int deceased) { //infection rate 
         default:
             infectionRate = 0.0;
     }
-    infectionRate += (deceased * 0.05); //the infection rate increases 5% for every infected neighbour
-    // Debug
-    // printf("inf neigh= %d, dec= %d, infRate = %f \n", infectedNeighbours, deceased, infectionRate);
+    infectionRate += (deceased * 0.05); //the infection rate increases 5% for every deceased neighbour
     return infectionRate;
 }
