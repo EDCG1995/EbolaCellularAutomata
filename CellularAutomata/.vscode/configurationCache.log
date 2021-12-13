@@ -1,1 +1,1 @@
-{"buildTargets":["Makefile","dataoutput.o","infectionRate.o","main","make","neighbourhood.o","updateWorld.o","world.o","worldUpdate.o"],"launchTargets":[],"customConfigurationProvider":{"workspaceBrowse":{"browsePath":[],"compilerArgs":[]},"fileIndex":[]}}
+{"buildTargets":["infectionRate.o","main","neighbourhood.o","world.o"],"launchTargets":[],"customConfigurationProvider":{"workspaceBrowse":{"browsePath":[],"compilerArgs":[]},"fileIndex":[]}}
