@@ -25,7 +25,7 @@ int main()
         printf("Can't open file\n");
     }
 
-    fprintf(fp, "Sus, Rec, inf, dead, rem, empty\n");
+    fprintf(fp, "Sus, inf, dead, rem, empty, Rec\n");
     fclose(fopen("dataoutput.csv", "w"));
     fclose(fopen("dataoutputanimation.csv", "w"));
 
@@ -78,7 +78,7 @@ int main()
 
         fprintf(fa, "\n");
         // Prints susceptible, infected, dead, removed and empty to CSV file for data storage and SIR visualization
-        fprintf(fp, "%d, %d, %d, %d, %d, %d\n", s, rec, in, d, rem, e);
+        fprintf(fp, "%d, %d, %d, %d, %d, %d\n", s, in, d, rem, e, rec);
 
         // Progress bar to show completion %
         float progress_bar = t * 100.0 / GENS;
@@ -87,6 +87,6 @@ int main()
     fclose(fp);
     fclose(fa);
     printf("\rProgress =   100 %%");
-    printf("\nProgram finished! Check .cvs output.\n");
+    printf("\nProgram finished! Check .csv output.\n");
     return 0;
 }
