@@ -68,8 +68,10 @@ int main()
         {
             for (int j = 0; j < Yaxis; j++)
             {
-                // Debug statement
-                // fprintf(fa, "%d,", world[i][j]);
+                fprintf(fa, "%d", world[i][j]);
+                if (j < Yaxis-1){
+                    fprintf(fa, ",");
+                }
                 switch (world[i][j])
                 {
 
@@ -92,12 +94,12 @@ int main()
                     rec++;
                 }
             }
-            fprintf(fa, "\b\n");
+            fprintf(fa, "\n");
         }
 
         fprintf(fa, "\n");
         // Prints susceptible, infected, dead, removed and empty to CSV file for data storage and SIR visualization
-        fprintf(fp, "%d, %d, %d, %d, %d, %d\n", s, rec, in, d, rem, e);
+        fprintf(fp, "%d, %d, %d, %d, %d, %d\n", s, in, d, rem, e, rec);
 
         // Progress bar to show completion %
         float progress_bar = t * 100.0 / GENS;
