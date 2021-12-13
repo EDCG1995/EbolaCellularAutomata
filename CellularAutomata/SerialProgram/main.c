@@ -44,10 +44,13 @@ int main()
 
         for (int i = 0; i < Xaxis; i++)
         {
+
             for (int j = 0; j < Yaxis; j++)
             {
-                // Debug statement
-                // fprintf(fa, "%d,", world[i][j]);
+                fprintf(fa, "%d,", world[i][j]);
+                if (j < Yaxis - 1){
+                    fprintf(fa, ",");
+                }
                 switch (world[i][j])
                 {
 
