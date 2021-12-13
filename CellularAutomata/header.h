@@ -42,7 +42,7 @@ enum cellStatus {
     DEAD, /*is 2*/
     REM,  /*is 3*/
     SUSC, /*is 4*/
-    REC
+    REC /*is 5*/
 };
 
 #endif
